@@ -5,10 +5,7 @@
 :root {
     --color-pink: #ffa0d8;
     --color-yellow: #ffeaad;
-    --color-yellow-soft: #fff2c7;
-
     --color-navy: #151c45;
-    --color-navy-dark: #000939;
 
     --color-text-light: #ffffff;
     --color-text-dark: var(--color-navy);
@@ -26,9 +23,9 @@
     box-sizing: border-box;
 }
 
-html,
-body {
+html {
     height: 100%;
+    background-color: var(--color-navy);
 }
 
 body {
@@ -37,8 +34,7 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: var(--font-text);
-    background: var(--color-pink);
-    color: var(--color-text-dark);
+    color: var(--color-text-light);
 }
 
 section {
@@ -67,18 +63,20 @@ h1 {
 }
 
 h2 {
-    font-size: 3.2rem;
-    font-weight: 800;
+    font-size: 4rem;
+    font-weight: 700;
+    font-style: italic;
     margin: 0;
 }
 
 h3 {
-    font-size: 2.4rem;
+    font-size: 3.4rem;
+    font-weight: 700;
     margin: 0;
 }
 
 h4 {
-    font-size: 1.8rem;
+    font-size: 2.4rem;
     margin: 0;
 }
 
@@ -93,9 +91,15 @@ h6 {
 }
 
 p {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
+    font-weight: 600;
     line-height: 1.5;
     margin: 0;
+}
+
+em {
+    font-style: italic;
+    font-weight: 300;
 }
 
 #banner {
@@ -113,5 +117,5 @@ p {
     font-weight: 700;
     color: var(--color-text-dark);
     margin: 0 0 1.6rem 0;
-    font-size: 2.4rem;
+    font-size: 3rem;
 }
