@@ -63,14 +63,13 @@ h1 {
 }
 
 h2 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 700;
-    font-style: italic;
     margin: 0;
 }
 
 h3 {
-    font-size: 3.4rem;
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
 }
@@ -86,8 +85,10 @@ h5 {
 }
 
 h6 {
-    font-size: 1.2rem;
-    margin: 0;
+    font-size: 1.7rem;
+    font-style: italic;
+    font-weight: 300;
+        margin: 0;
 }
 
 p {
@@ -95,11 +96,6 @@ p {
     font-weight: 600;
     line-height: 1.5;
     margin: 0;
-}
-
-em {
-    font-style: italic;
-    font-weight: 300;
 }
 
 #banner {

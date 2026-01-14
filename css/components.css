@@ -2,20 +2,7 @@
     position: relative;
     background-color: var(--color-pink);
     color: var(--color-text-dark);
-    z-index: -1;
-}
-
-.background-pink::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 250px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--color-navy);
-    z-index: -10;
-    border-top-left-radius: 50% 100%;
-    border-top-right-radius: 50% 100%;
+    z-index: 0;
 }
 
 .card {
@@ -27,18 +14,16 @@
     min-height: 300px;
 }
 
-.card::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 24px;
-    left: 24px;
-    border-radius: 24px;
-    background: var(--color-yellow);
-    z-index: -1;
-    opacity: 0.5;
+.card::before {
+    box-shadow: 20pt 20pt 0 0 var(--color-yellow);
     mix-blend-mode: multiply;
+    content: "";
+    border-radius: 24px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
 }
 
 .card>*:first-child {

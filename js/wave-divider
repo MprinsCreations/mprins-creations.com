@@ -1,0 +1,139 @@
+const waveConfig = {
+    tilt: -250, // positive = lift right, negative = lift left
+    heightOffset: -250, // raise/lower the entire wave
+    segments: 200, // number of segments to divide the wave into
+    waves: [ // Multiple stacked wave layers
+        { amplitude: 24, frequency: 0.025, speed: 0.005, phase: 0 },
+        { amplitude: 14, frequency: 0.12, speed: 0.008, phase: 0 },
+        { amplitude: 8, frequency: 0.3, speed: 0.003, phase: 0 },
+        { amplitude: 5, frequency: 0.015, speed: 0.006, phase: 0 }
+    ]
+};
+
+// Inject styles
+const style = document.createElement('style');
+style.textContent = `
+    .wave-divider {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    .wave-divider svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize wave dividers
+function initWaveDividers() {
+    const dividers = document.querySelectorAll('.wave-divider');
+    
+    dividers.forEach(container => {
+        // Remove existing SVG if any
+        const existingSvg = container.querySelector('svg');
+        if (existingSvg) {
+            existingSvg.remove();
+        }
+        
+        // Get the actual rendered height of the container
+        const containerHeight = container.offsetHeight || 120;
+        
+        // Create SVG element with viewBox based on actual height
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', `0 0 1200 ${containerHeight}`);
+        svg.setAttribute('preserveAspectRatio', 'none');
+        
+        // Create path for the wave
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('class', 'wave-path');
+        path.setAttribute('fill', 'var(--color-navy)');
+        path.setAttribute('data-container-height', containerHeight);
+        
+        svg.appendChild(path);
+        container.appendChild(svg);
+    });
+}
+
+function generateWavePath() {
+    const wavePaths = document.querySelectorAll('.wave-path');
+    
+    wavePaths.forEach(wavePath => {
+        const containerHeight = parseFloat(wavePath.getAttribute('data-container-height')) || 120;
+        const midlineY = containerHeight / 2 - waveConfig.heightOffset;
+        
+        // Define the baseline heights - tilt can be positive (lift right) or negative (lift left)
+        const leftBaselineY = midlineY + Math.min(waveConfig.tilt, 0);   // negative tilt lifts left
+        const rightBaselineY = midlineY - Math.max(waveConfig.tilt, 0);  // positive tilt lifts right
+        
+        let pathPoints = [];
+
+        for (let i = 0; i <= waveConfig.segments; i++) {
+            const x = (i / waveConfig.segments) * 1200;
+            const t = i / waveConfig.segments; // 0 to 1 for interpolation
+            
+            // Linearly interpolate baseline from left to right
+            const baselineY = leftBaselineY + (rightBaselineY - leftBaselineY) * t;
+            
+            let y = baselineY;
+
+            // Stack multiple waves together
+            for (let waveLayer of waveConfig.waves) {
+                const waveOffset = Math.sin((i * waveLayer.frequency) + waveLayer.phase) * waveLayer.amplitude;
+                y += waveOffset;
+            }
+
+            pathPoints.push({ x, y });
+        }
+
+        // Build path string
+        let path = `M${pathPoints[0].x},${pathPoints[0].y}`;
+        for (let i = 1; i < pathPoints.length; i++) {
+            path += ` L${pathPoints[i].x},${pathPoints[i].y}`;
+        }
+
+        // Close the shape with a straight bottom line at full height
+        path += ` L1200,${containerHeight} L0,${containerHeight} Z`;
+        
+        wavePath.setAttribute('d', path);
+    });
+}
+
+function animateWaves() {
+    // Update phase for each wave layer
+    for (let waveLayer of waveConfig.waves) {
+        waveLayer.phase += waveLayer.speed;
+    }
+    
+    generateWavePath();
+    requestAnimationFrame(animateWaves);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        initWaveDividers();
+        generateWavePath();
+        animateWaves();
+        
+        // Handle window resize to recalculate viewBox
+        window.addEventListener('resize', () => {
+            initWaveDividers();
+        });
+    });
+} else {
+    initWaveDividers();
+    generateWavePath();
+    animateWaves();
+    
+    window.addEventListener('resize', () => {
+        initWaveDividers();
+    });
+}
