@@ -1,12 +1,12 @@
 const waveConfig = {
-    tilt: -250, // positive = lift right, negative = lift left
+    tilt: -200, // positive = lift right, negative = lift left
     heightOffset: -250, // raise/lower the entire wave
     segments: 200, // number of segments to divide the wave into
     waves: [ // Multiple stacked wave layers
-        { amplitude: 24, frequency: 0.025, speed: 0.005, phase: 0 },
-        { amplitude: 14, frequency: 0.12, speed: 0.008, phase: 0 },
-        { amplitude: 8, frequency: 0.3, speed: 0.003, phase: 0 },
-        { amplitude: 5, frequency: 0.015, speed: 0.006, phase: 0 }
+        { amplitude: 32, frequency: 0.02, speed: 0.005, phase: 0 },
+        { amplitude: 16, frequency: 0.12, speed: 0.008, phase: 0 },
+        { amplitude: 8, frequency: 0.05, speed: 0.003, phase: 0 },
+        { amplitude: 3, frequency: 0.4, speed: 0.006, phase: 0 }
     ]
 };
 
@@ -37,16 +37,13 @@ function initWaveDividers() {
     const dividers = document.querySelectorAll('.wave-divider');
     
     dividers.forEach(container => {
-        // Remove existing SVG if any
         const existingSvg = container.querySelector('svg');
         if (existingSvg) {
             existingSvg.remove();
         }
         
-        // Get the actual rendered height of the container
         const containerHeight = container.offsetHeight || 120;
         
-        // Create SVG element with viewBox based on actual height
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('viewBox', `0 0 1200 ${containerHeight}`);
         svg.setAttribute('preserveAspectRatio', 'none');
@@ -69,15 +66,15 @@ function generateWavePath() {
         const containerHeight = parseFloat(wavePath.getAttribute('data-container-height')) || 120;
         const midlineY = containerHeight / 2 - waveConfig.heightOffset;
         
-        // Define the baseline heights - tilt can be positive (lift right) or negative (lift left)
-        const leftBaselineY = midlineY + Math.min(waveConfig.tilt, 0);   // negative tilt lifts left
-        const rightBaselineY = midlineY - Math.max(waveConfig.tilt, 0);  // positive tilt lifts right
+        // Define the baseline heights at left and right edges
+        const leftBaselineY = midlineY + Math.min(waveConfig.tilt, 0);
+        const rightBaselineY = midlineY - Math.max(waveConfig.tilt, 0);
         
         let pathPoints = [];
 
         for (let i = 0; i <= waveConfig.segments; i++) {
             const x = (i / waveConfig.segments) * 1200;
-            const t = i / waveConfig.segments; // 0 to 1 for interpolation
+            const t = i / waveConfig.segments;
             
             // Linearly interpolate baseline from left to right
             const baselineY = leftBaselineY + (rightBaselineY - leftBaselineY) * t;
@@ -109,7 +106,7 @@ function generateWavePath() {
 function animateWaves() {
     // Update phase for each wave layer
     for (let waveLayer of waveConfig.waves) {
-        waveLayer.phase += waveLayer.speed;
+        waveLayer.phase -= waveLayer.speed;
     }
     
     generateWavePath();
@@ -123,7 +120,6 @@ if (document.readyState === 'loading') {
         generateWavePath();
         animateWaves();
         
-        // Handle window resize to recalculate viewBox
         window.addEventListener('resize', () => {
             initWaveDividers();
         });
