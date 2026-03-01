@@ -1,7 +1,9 @@
 const waveConfig = {
     tilt: -200, // positive = lift right, negative = lift left
-    heightOffset: -250, // raise/lower the entire wave
+    heightOffset: -225, // raise/lower the entire wave
     segments: 200, // number of segments to divide the wave into
+    flipped: false, // flip the wave upside down
+    color: 'var(--color-navy)', // CSS color or variable
     waves: [ // Multiple stacked wave layers
         { amplitude: 32, frequency: 0.02, speed: 0.005, phase: 0 },
         { amplitude: 16, frequency: 0.12, speed: 0.008, phase: 0 },
@@ -24,6 +26,10 @@ style.textContent = `
         z-index: -1;
     }
     
+    .wave-divider.wave-divider--flipped {
+        bottom: 1px;
+    }
+    
     .wave-divider svg {
         display: block;
         width: 100%;
@@ -31,6 +37,30 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Get configuration for a specific divider element
+function getDividerConfig(element) {
+    const config = { ...waveConfig };
+    
+    // Override with data attributes
+    if (element.hasAttribute('data-tilt')) {
+        config.tilt = parseFloat(element.getAttribute('data-tilt'));
+    }
+    if (element.hasAttribute('data-height-offset')) {
+        config.heightOffset = parseFloat(element.getAttribute('data-height-offset'));
+    }
+    if (element.hasAttribute('data-segments')) {
+        config.segments = parseInt(element.getAttribute('data-segments'));
+    }
+    if (element.hasAttribute('data-flipped')) {
+        config.flipped = element.getAttribute('data-flipped') !== 'false';
+    }
+    if (element.hasAttribute('data-color')) {
+        config.color = element.getAttribute('data-color');
+    }
+    
+    return config;
+}
 
 // Initialize wave dividers
 function initWaveDividers() {
@@ -43,6 +73,14 @@ function initWaveDividers() {
         }
         
         const containerHeight = container.offsetHeight || 120;
+        const dividerConfig = getDividerConfig(container);
+        
+        // Add flipped class if needed
+        if (dividerConfig.flipped) {
+            container.classList.add('wave-divider--flipped');
+        } else {
+            container.classList.remove('wave-divider--flipped');
+        }
         
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('viewBox', `0 0 1200 ${containerHeight}`);
@@ -51,8 +89,9 @@ function initWaveDividers() {
         // Create path for the wave
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('class', 'wave-path');
-        path.setAttribute('fill', 'var(--color-navy)');
+        path.setAttribute('fill', dividerConfig.color);
         path.setAttribute('data-container-height', containerHeight);
+        path.setAttribute('data-config', JSON.stringify(dividerConfig));
         
         svg.appendChild(path);
         container.appendChild(svg);
@@ -64,26 +103,39 @@ function generateWavePath() {
     
     wavePaths.forEach(wavePath => {
         const containerHeight = parseFloat(wavePath.getAttribute('data-container-height')) || 120;
-        const midlineY = containerHeight / 2 - waveConfig.heightOffset;
+        const dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
+        const segments = dividerConfig.segments;
+        const tilt = dividerConfig.tilt;
+        let heightOffset = dividerConfig.heightOffset;
+        const isFlipped = dividerConfig.flipped;
+        
+        const midlineY = containerHeight / 2 - heightOffset;
         
         // Define the baseline heights at left and right edges
-        const leftBaselineY = midlineY + Math.min(waveConfig.tilt, 0);
-        const rightBaselineY = midlineY - Math.max(waveConfig.tilt, 0);
+        let leftBaselineY = midlineY + Math.min(tilt, 0);
+        let rightBaselineY = midlineY - Math.max(tilt, 0);
+        
+        // Flip the baseline if needed
+        if (isFlipped) {
+            [leftBaselineY, rightBaselineY] = [containerHeight - rightBaselineY, containerHeight - leftBaselineY];
+        }
         
         let pathPoints = [];
 
-        for (let i = 0; i <= waveConfig.segments; i++) {
-            const x = (i / waveConfig.segments) * 1200;
-            const t = i / waveConfig.segments;
+        for (let i = 0; i <= segments; i++) {
+            const x = (i / segments) * 1200;
+            const t = i / segments;
             
             // Linearly interpolate baseline from left to right
-            const baselineY = leftBaselineY + (rightBaselineY - leftBaselineY) * t;
-            
-            let y = baselineY;
+            let y = leftBaselineY + (rightBaselineY - leftBaselineY) * t;
 
             // Stack multiple waves together
-            for (let waveLayer of waveConfig.waves) {
-                const waveOffset = Math.sin((i * waveLayer.frequency) + waveLayer.phase) * waveLayer.amplitude;
+            for (let waveLayer of dividerConfig.waves) {
+                let waveOffset = Math.sin((i * waveLayer.frequency) + waveLayer.phase) * waveLayer.amplitude;
+                // Invert wave offset if flipped
+                if (isFlipped) {
+                    waveOffset = -waveOffset;
+                }
                 y += waveOffset;
             }
 
@@ -96,18 +148,34 @@ function generateWavePath() {
             path += ` L${pathPoints[i].x},${pathPoints[i].y}`;
         }
 
-        // Close the shape with a straight bottom line at full height
-        path += ` L1200,${containerHeight} L0,${containerHeight} Z`;
+        // Close the shape
+        if (isFlipped) {
+            // For flipped, close from top
+            path += ` L1200,0 L0,0 Z`;
+        } else {
+            // For normal, close from bottom
+            path += ` L1200,${containerHeight} L0,${containerHeight} Z`;
+        }
         
         wavePath.setAttribute('d', path);
     });
 }
 
 function animateWaves() {
-    // Update phase for each wave layer
-    for (let waveLayer of waveConfig.waves) {
-        waveLayer.phase -= waveLayer.speed;
-    }
+    // Update phase for each wave layer in each divider
+    const wavePaths = document.querySelectorAll('.wave-path');
+    
+    wavePaths.forEach(wavePath => {
+        const dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
+        
+        // Update phase for each wave layer
+        for (let waveLayer of dividerConfig.waves) {
+            waveLayer.phase -= waveLayer.speed;
+        }
+        
+        // Update the stored config
+        wavePath.setAttribute('data-config', JSON.stringify(dividerConfig));
+    });
     
     generateWavePath();
     requestAnimationFrame(animateWaves);
