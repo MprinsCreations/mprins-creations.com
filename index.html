@@ -43,61 +43,91 @@
     </header>
 
     <main>
-        <div class="background-pink">
-            <section id="banner">
-                <h1>Mprins Creations</h1>
-                <p>"I make art, comics and animations"</p>
-            </section>
+        <!-- Hero Banner -->
+        <section id="hero">
+            <!-- Will get replaced with an actual video
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="actual-video.mp4" type="video/mp4">
+            </video>
+            -->
+            <img src="https://placehold.co/1920x1080" alt="Hero Image" class="hero-video">
+            <div class="hero-content">
+                <h1>Hey, I'm Milou!</h1>
+                <p>And welcome to my website</p>
+            </div>
+            <div class="wave-divider"></div>
+        </section>
 
-            <section>
-                <article class="card">
-                    <h2><em>Hello, I'm Milou!</em></h2>
-                    <p>First we mine, then we craft. Let's Minecraft!</p>
-                    <br>
-                    <h6>Creeper? Aw man! :(</h6>
+        <!-- About Section (Navy) -->
+        <section id="about">
+            <article class="about-row">
+                <div class="card intro-card">
+                    <p>Insert yapping and self glaze here</p>
+                    <p>Insert yapping and self glaze here</p>
+                    <p>Insert yapping and self glaze here</p>
+                    <p>Insert yapping and self glaze here</p>
+                    <p>Insert yapping and self glaze here</p>
+                </div>
+                <div class="profile-pic">
+                    <img src="https://placehold.co/320x320" alt="Profile picture">
+                </div>
+            </article>
+
+            <article class="software-row">
+                <span class="software-label">Software</span>
+                <div class="software-card card">
+                    <p>Clip Studio Paint, blah blah blah blah</p>
+                </div>
+            </article>
+        </section>
+
+        <section id="skills">
+            <article class="skills-row">
+                <div class="card skills-card">
+                    <h4>Languages</h4>
+                    <p>I can speak</p>
+                    <p>Yay</p>
+                </div>
+                <div class="card skills-card">
+                    <h4>Education</h4>
+                    <p>Something something i went to school</p>
+                </div>
+            </article>
+        </section>
+
+        <!-- Portfolio Carousel (Pink) -->
+        <div class="background-pink">
+            <div class="wave-divider" data-flipped="true"></div>
+            <section id="portfolio">
+                <h2>My Work</h2>
+                <article class="portfolio-carousel">
+                    <button class="carousel-arrow" aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="portfolio-card card">
+                        <div class="portfolio-text">
+                            <h3>Project</h3>
+                            <p>Look at this thing i did</p>
+                        </div>
+                        <div class="portfolio-image">
+                            <img src="https://placehold.co/400x300/151c45/ffeaad?text=Art+Piece" alt="Example artwork">
+                        </div>
+                    </div>
+                    <button class="carousel-arrow" aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </article>
             </section>
-
-            <div class="wave-divider"></div>
-        </div>
-
-        <section>
-            <article>
-                <h2>Wow more text</h2>
-                <p>And it continues...</p>
-                <h6>And continues...</h6>
-            </article>
-        </section>
-
-        <div class="background-pink">
-                    <section>
-            <article>
-                <h2>Wow more text</h2>
-                <p>And it continues...</p>
-                <h6>And continues...</h6>
-            </article>
-        </section>
-                <section>
-            <article>
-                <h2>Wow more text</h2>
-                <p>And it continues...</p>
-                <h6>And continues...</h6>
-            </article>
-        </section>
-                <section>
-            <article>
-                <h2>Wow more text</h2>
-                <p>And it continues...</p>
-                <h6>And continues...</h6>
-            </article>
-        </section>
-            <div class="wave-divider" data-flipped="true"></div>
         </div>
     </main>
 
     <footer>
         <div>
             <h5>Contact</h5>
+            <a href="mailto:mprinscreations@gmail.com"><i class="fas fa-envelope"></i> mprinscreations@gmail.com</a>
+            <a href="https://discord.com/users/492758615510482948" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-discord"></i> @mprins-creations
+            </a>
         </div>
         <div>
             <h5>Socials</h5>

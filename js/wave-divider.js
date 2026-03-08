@@ -1,14 +1,15 @@
 const waveConfig = {
-    tilt: -200, // positive = lift right, negative = lift left
-    heightOffset: -225, // raise/lower the entire wave
     segments: 200, // number of segments to divide the wave into
+    waveHeight: 300, // fixed pixel height of the wave
+    positionOffset: -100, // raise/lower the wave baseline
+    tilt: -180, // positive = lift right, negative = lift left
     flipped: false, // flip the wave upside down
     color: 'var(--color-navy)', // CSS color or variable
     waves: [ // Multiple stacked wave layers
-        { amplitude: 32, frequency: 0.02, speed: 0.005, phase: 0 },
-        { amplitude: 16, frequency: 0.12, speed: 0.008, phase: 0 },
-        { amplitude: 8, frequency: 0.05, speed: 0.003, phase: 0 },
-        { amplitude: 3, frequency: 0.4, speed: 0.006, phase: 0 }
+        { amplitude: 35, frequency: 0.02, speed: 0.0019, phase: 0 },
+        { amplitude: 16, frequency: 0.12, speed: 0.0044, phase: 0 },
+        { amplitude: 8, frequency: 0.05, speed: 0.004, phase: 0 },
+        { amplitude: 3, frequency: 0.4, speed: 0.025, phase: 0 }
     ]
 };
 
@@ -20,14 +21,16 @@ style.textContent = `
         bottom: -1px;
         left: 0;
         width: 100%;
-        height: 100%;
+        max-height: 100%;
         display: block;
         pointer-events: none;
         z-index: -1;
+        overflow: hidden;
     }
     
     .wave-divider.wave-divider--flipped {
-        bottom: 1px;
+        bottom: auto;
+        top: -1px;
     }
     
     .wave-divider svg {
@@ -43,14 +46,17 @@ function getDividerConfig(element) {
     const config = { ...waveConfig };
     
     // Override with data attributes
-    if (element.hasAttribute('data-tilt')) {
-        config.tilt = parseFloat(element.getAttribute('data-tilt'));
-    }
-    if (element.hasAttribute('data-height-offset')) {
-        config.heightOffset = parseFloat(element.getAttribute('data-height-offset'));
-    }
     if (element.hasAttribute('data-segments')) {
         config.segments = parseInt(element.getAttribute('data-segments'));
+    }
+    if (element.hasAttribute('data-wave-height')) {
+        config.waveHeight = parseFloat(element.getAttribute('data-wave-height'));
+    }
+    if (element.hasAttribute('data-position-offset')) {
+        config.positionOffset = parseFloat(element.getAttribute('data-position-offset'));
+    }
+    if (element.hasAttribute('data-tilt')) {
+        config.tilt = parseFloat(element.getAttribute('data-tilt'));
     }
     if (element.hasAttribute('data-flipped')) {
         config.flipped = element.getAttribute('data-flipped') !== 'false';
@@ -72,8 +78,11 @@ function initWaveDividers() {
             existingSvg.remove();
         }
         
-        const containerHeight = container.offsetHeight || 120;
         const dividerConfig = getDividerConfig(container);
+        const waveHeight = dividerConfig.waveHeight;
+        
+        // Set fixed height, capped at container size
+        container.style.height = waveHeight + 'px';
         
         // Add flipped class if needed
         if (dividerConfig.flipped) {
@@ -83,14 +92,14 @@ function initWaveDividers() {
         }
         
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('viewBox', `0 0 1200 ${containerHeight}`);
+        svg.setAttribute('viewBox', `0 0 1200 ${waveHeight}`);
         svg.setAttribute('preserveAspectRatio', 'none');
         
         // Create path for the wave
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('class', 'wave-path');
         path.setAttribute('fill', dividerConfig.color);
-        path.setAttribute('data-container-height', containerHeight);
+        path.setAttribute('data-wave-height', waveHeight);
         path.setAttribute('data-config', JSON.stringify(dividerConfig));
         
         svg.appendChild(path);
@@ -102,14 +111,14 @@ function generateWavePath() {
     const wavePaths = document.querySelectorAll('.wave-path');
     
     wavePaths.forEach(wavePath => {
-        const containerHeight = parseFloat(wavePath.getAttribute('data-container-height')) || 120;
+        const waveHeight = parseFloat(wavePath.getAttribute('data-wave-height')) || 300;
         const dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
         const segments = dividerConfig.segments;
         const tilt = dividerConfig.tilt;
-        let heightOffset = dividerConfig.heightOffset;
+        let positionOffset = dividerConfig.positionOffset;
         const isFlipped = dividerConfig.flipped;
         
-        const midlineY = containerHeight / 2 - heightOffset;
+        const midlineY = waveHeight / 2 - positionOffset;
         
         // Define the baseline heights at left and right edges
         let leftBaselineY = midlineY + Math.min(tilt, 0);
@@ -117,7 +126,7 @@ function generateWavePath() {
         
         // Flip the baseline if needed
         if (isFlipped) {
-            [leftBaselineY, rightBaselineY] = [containerHeight - rightBaselineY, containerHeight - leftBaselineY];
+            [leftBaselineY, rightBaselineY] = [waveHeight - rightBaselineY, waveHeight - leftBaselineY];
         }
         
         let pathPoints = [];
@@ -154,7 +163,7 @@ function generateWavePath() {
             path += ` L1200,0 L0,0 Z`;
         } else {
             // For normal, close from bottom
-            path += ` L1200,${containerHeight} L0,${containerHeight} Z`;
+            path += ` L1200,${waveHeight} L0,${waveHeight} Z`;
         }
         
         wavePath.setAttribute('d', path);
