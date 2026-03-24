@@ -87,7 +87,7 @@
 
 .software-row {
    display: flex;
-   flex-direction: column;
+   flex-direction: row;
    align-items: flex-start;
    gap: var(--spacing-2);
 }
@@ -107,23 +107,30 @@
 
 /* ═══ Skills Section ═══ */
 #skills {
-   padding: 2rem var(--spacing-3) 6rem;
+   padding: 2rem var(--spacing-3);
+   height: 850px;
 }
 
 .skills-row {
    display: flex;
    gap: var(--spacing-3);
    align-items: stretch;
+   height: 100%;
+   max-width: 800px;
 }
 
-.skills-card {
+.skills-row>* {
    flex: 1;
-   min-height: 260px;
+   height: 85%;
+}
+
+.skills-row>*:first-child {
+   align-self: flex-end;
 }
 
 /* ═══ My Work Section ═══ */
 #my-work {
-   padding: 4rem var(--spacing-3);
+   padding: var(--spacing-3);
    text-align: center;
 }
 
@@ -134,7 +141,7 @@
 
 /* ═══ Portfolio Carousel ═══ */
 #portfolio {
-   padding: 2rem var(--spacing-3) 4rem;
+   padding: 12rem var(--spacing-3) var(--spacing-3) var(--spacing-3);
 }
 
 .portfolio-carousel {
