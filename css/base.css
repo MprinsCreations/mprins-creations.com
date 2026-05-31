@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
 
 :root {
-    --color-pink: #fea5ca;
+    --color-pink: #ff9fc2;
     --color-yellow: #ffeaad;
-    --color-navy: #151c45;
+    --color-navy: #1e3764;
 
     --color-text-light: #ffffff;
     --color-text-dark: var(--color-navy);
@@ -13,10 +13,18 @@
     --font-text: 'Nunito', 'Roboto', Helvetica, Arial, sans-serif;
     --font-heading: 'Titan One', 'Nunito', Helvetica, Arial, sans-serif;
 
+    --max-width: 1100px;
+
     --spacing-1: 0.5rem;
     --spacing-2: 1rem;
-    --spacing-3: 2rem;
-    --max-width: 1100px;
+    --spacing-3: 1.5rem;
+    --spacing-4: 2rem;
+    --spacing-5: 3rem;
+
+    --rounding-1: 8px;
+    --rounding-2: 16px;
+    --rounding-3: 24px;
+    --rounding-4: 32px;
 }
 
 * {
@@ -50,12 +58,12 @@ section {
 article {
     width: 100%;
     max-width: var(--max-width);
-    margin-bottom: var(--spacing-3);
+    margin-bottom: var(--spacing-4);
 }
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 6.5rem;
+    font-size: 6.4rem;
     font-weight: 500;
     line-height: 0.9;
     margin: 1.2rem 0 0.2rem 0;
@@ -64,9 +72,11 @@ h1 {
 }
 
 h2 {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-family: var(--font-heading);
+    font-size: 4.6rem;
+    font-weight: 200;
     margin: 0;
+    text-transform: uppercase;
 }
 
 h3 {
@@ -97,147 +107,4 @@ p {
     font-weight: 600;
     line-height: 1.5;
     margin: 0;
-}
-
-.link a {
-    display: flex;
-    align-items: center;
-    color: var(--color-navy);
-    text-decoration: none;
-    padding: 0.25em 0.5em;
-    gap: 0.5em;
-}
-
-.icon-link a {
-    display: flex;
-    align-items: center;
-    color: var(--color-navy);
-    text-decoration: none;
-    padding: 0.25em;
-    aspect-ratio: 1 / 1;
-}
-
-.link:hover a,
-.icon-link:hover a {
-    animation: hoverTurn 0.2s ease forwards;
-}
-
-@keyframes hoverTurn {
-    0% {
-        background-color: var(--color-navy);
-        color: var(--color-yellow);
-        transform: rotate(0deg);
-    }
-
-    50% {
-        transform: rotate(-5deg);
-    }
-
-    100% {
-        background-color: var(--color-navy);
-        color: var(--color-yellow);
-        transform: rotate(-3deg);
-    }
-}
-
-#banner {
-    text-align: center;
-    padding: 4rem 2rem 2rem 2rem;
-}
-
-#banner h1 {
-    color: var(--color-text-dark);
-}
-
-#banner p {
-    font-family: var(--font-text);
-    font-style: italic;
-    font-weight: 700;
-    color: var(--color-text-dark);
-    margin: 0 0 1.6rem 0;
-    font-size: 3rem;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5rem;
-    width: 100%;
-    font-size: 1.75rem;
-    padding: 0 var(--spacing-3);
-    background-color: var(--color-yellow);
-}
-
-header div {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-3);
-    height: 100%;
-}
-
-header .logo,
-header .logo img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    gap: var(--spacing-2);
-}
-
-nav a {
-    color: var(--color-text-dark);
-    text-decoration: none;
-    font-weight: 700;
-    gap: var(--spacing-2);
-}
-
-footer {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: var(--spacing-2) var(--spacing-3);
-    gap: var(--spacing-3);
-    background-color: var(--color-navy);
-}
-
-footer div {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-1);
-    color: var(--color-text-light);
-    font-size: 1.7rem;
-    min-width: 480px;
-}
-
-.footer-link {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-2);
-    color: var(--color-text-light);
-    opacity: 0.8;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.5rem;
-    transition: gap 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.footer-link:hover {
-    opacity: 1;
-    gap: var(--spacing-3);
-}
-
-.footer-link i {
-    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), scale 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.footer-link:hover i {
-    transform: rotate(360deg);
-    scale: 1.5;
 }

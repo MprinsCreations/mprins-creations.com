@@ -24,30 +24,22 @@
    position: relative;
    z-index: 2;
    text-align: right;
-   padding: var(--spacing-3);
+   padding: var(--spacing-4);
    padding-right: 5%;
-   max-width: 55%;
-   color: var(--color-navy);
+   color: var(--color-pink);
+   text-shadow: 1px 1px 4px var(--color-navy);
 }
 
 .hero-content h1 {
-   color: var(--color-pink);
-   -webkit-text-stroke: 4px var(--color-navy);
-   paint-order: stroke fill;
    font-size: 5.5rem;
    line-height: 1;
    margin-bottom: var(--spacing-2);
 }
 
 .hero-content p {
-   color: var(--color-pink);
-   font-family: var(--font-heading);
-   -webkit-text-stroke: 4px var(--color-navy);
-   paint-order: stroke fill;
-   font-size: 2.2rem;
-   font-weight: 200;
+   font-size: 2.4rem;
+   font-weight: 800;
    letter-spacing: 0.02em;
-   font-style: italic;
 }
 
 #hero .wave-divider {
@@ -56,13 +48,13 @@
 
 /* ═══ About Section ═══ */
 #about {
-   padding: 0 var(--spacing-3);
+   padding: var(--spacing-4);
 }
 
 .about-row {
    display: flex;
    align-items: center;
-   gap: calc(var(--spacing-3) * 2);
+   gap: calc(var(--spacing-4) * 2);
 }
 
 .intro-card {
@@ -70,7 +62,7 @@
    min-height: 200px;
 }
 
-.profile-pic {
+.profile-picture {
    flex: 0 0 auto;
    display: flex;
    flex-direction: column;
@@ -78,11 +70,12 @@
    gap: 0.5rem;
 }
 
-.profile-pic img {
+.profile-picture img {
    width: 320px;
    height: 320px;
    object-fit: contain;
    transform: rotate(5deg);
+   border-radius: var(--rounding-2);
 }
 
 .software-row {
@@ -95,7 +88,7 @@
 .software-card {
    flex: 1;
    min-height: auto;
-   padding: var(--spacing-2) var(--spacing-3);
+   padding: var(--spacing-2) var(--spacing-4);
 }
 
 .software-label {
@@ -107,13 +100,13 @@
 
 /* ═══ Skills Section ═══ */
 #skills {
-   padding: 2rem var(--spacing-3);
+   padding: 2rem var(--spacing-4);
    height: 850px;
 }
 
 .skills-row {
    display: flex;
-   gap: var(--spacing-3);
+   gap: var(--spacing-4);
    align-items: stretch;
    height: 100%;
    max-width: 800px;
@@ -130,7 +123,7 @@
 
 /* ═══ My Work Section ═══ */
 #my-work {
-   padding: var(--spacing-3);
+   padding: var(--spacing-4);
    text-align: center;
 }
 
@@ -141,34 +134,42 @@
 
 /* ═══ Portfolio Carousel ═══ */
 #portfolio {
-   padding: 12rem var(--spacing-3) var(--spacing-3) var(--spacing-3);
+   padding: 12rem var(--spacing-4) var(--spacing-4) var(--spacing-4);
+   gap: var(--spacing-4);
 }
 
 .portfolio-carousel {
    display: flex;
    align-items: center;
-   gap: var(--spacing-2);
+   gap: var(--spacing-4);
 }
 
 .portfolio-card {
    flex: 1;
    display: grid;
    grid-template-columns: 1fr 1fr;
-   gap: var(--spacing-3);
-   min-height: auto;
+   padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-4);
+   gap: var(--spacing-4);
+   aspect-ratio: 21 / 9;
 }
 
 .portfolio-text h2 {
    margin-bottom: var(--spacing-1);
 }
 
+.portfolio-card .portfolio-image, .portfolio-card .portfolio-image img {
+   height: 100%;
+   border-radius: var(--rounding-2);
+   object-fit: cover;
+   aspect-ratio: 1 / 1;
+}
 
 /* ═══ Responsive ═══ */
 @media (max-width: 768px) {
    .hero-content {
       max-width: 100%;
       text-align: center;
-      padding: var(--spacing-3);
+      padding: var(--spacing-4);
    }
 
    .hero-content h1 {
@@ -183,7 +184,7 @@
       flex-direction: column;
    }
 
-   .profile-pic {
+   .profile-picture {
       order: -1;
    }
 

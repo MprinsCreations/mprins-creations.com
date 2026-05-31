@@ -1,0 +1,81 @@
+<div>
+   <a href="index.html" class="logo">
+      <img src="media/cat-dark.png" alt="Mprins Creations Logo">
+   </a>
+   <nav>
+      <div class="link"><a href="illustrations.html">Illustrations</a></div>
+      <div class="link"><a href="animations.html">Animations</a></div>
+      <div class="link"><a href="comics.html">Comics</a></div>
+      <div class="link"><a href="design.html">Design</a></div>
+   </nav>
+</div>
+<nav>
+   <div class="icon-link"><a href="https://www.instagram.com/mprins_creations" target="_blank" rel="noopener noreferrer">
+         <i class="fab fa-instagram"></i>
+      </a></div>
+   <div class="icon-link"><a href="https://bsky.app/profile/mprinscreations.bsky.social" target="_blank" rel="noopener noreferrer">
+         <i class="fab fa-bluesky"></i>
+      </a></div>
+   <div class="icon-link"><a href="https://www.reddit.com/user/mprins_creations/" target="_blank" rel="noopener noreferrer">
+         <i class="fab fa-reddit"></i>
+      </a></div>
+   <div class="icon-link"><a href="https://www.pinterest.com/mprinscreations/" target="_blank" rel="noopener noreferrer">
+         <i class="fab fa-pinterest"></i>
+      </a></div>
+   <div class="icon-link"><a href="https://www.youtube.com/@mprins_creations" target="_blank" rel="noopener noreferrer">
+         <i class="fab fa-youtube"></i>
+      </a></div>
+   <div class="icon-link"><a href="https://www.tiktok.com/@mprins_creations" target="_blank" rel="noopener noreferrer">
+         <i class="fab fa-tiktok"></i>
+      </a></div>
+</nav>
+
+<style>
+   header {
+      position: fixed;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 5rem;
+      width: 100%;
+      font-size: 1.75rem;
+      padding: 0 var(--spacing-4);
+      background-color: var(--color-yellow);
+      z-index: 100;
+      transition: transform 0.2s ease-in-out;
+   }
+
+   header.hidden{
+      transform: translateY(-100%);
+   }
+
+   header div {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-4);
+      height: 100%;
+   }
+
+   header .logo,
+   header .logo img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+   }
+
+   nav {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      gap: var(--spacing-2);
+   }
+
+   nav a {
+      color: var(--color-text-dark);
+      text-decoration: none;
+      font-weight: 700;
+      gap: var(--spacing-2);
+   }
+</style>

@@ -2,14 +2,12 @@ const waveConfig = {
     segments: 200, // number of segments to divide the wave into
     waveHeight: 300, // fixed pixel height of the wave
     positionOffset: -100, // raise/lower the wave baseline
-    tilt: -180, // positive = lift right, negative = lift left
+    tilt: -100, // positive = lift right, negative = lift left
     flipped: false, // flip the wave upside down
     color: 'var(--color-navy)', // CSS color or variable
     waves: [ // Multiple stacked wave layers
         { amplitude: 35, frequency: 0.02, speed: 0.0019, phase: 0 },
-        { amplitude: 16, frequency: 0.12, speed: 0.0044, phase: 0 },
-        { amplitude: 8, frequency: 0.05, speed: 0.004, phase: 0 },
-        { amplitude: 3, frequency: 0.4, speed: 0.025, phase: 0 }
+        { amplitude: 16, frequency: 0.12, speed: 0.0044, phase: 0 }
     ]
 };
 
