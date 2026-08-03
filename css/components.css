@@ -16,7 +16,7 @@
     text-decoration: none;
     padding: 0.25em 0.5em;
     gap: 0.5em;
-    border-radius: var(--rounding-1);
+    border-radius: var(--rounding-2);
 }
 
 .icon-link a {
@@ -25,7 +25,7 @@
     color: var(--color-navy);
     text-decoration: none;
     padding: 0.25em;
-    border-radius: var(--rounding-1);
+    border-radius: var(--rounding-2);
     aspect-ratio: 1 / 1;
 }
 
@@ -67,12 +67,16 @@
     font-weight: 700;
     cursor: pointer;
     transition:
-        scale 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2), gap 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2);
+        scale 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2),
+        gap 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2),
+        letter-spacing 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2);
+    letter-spacing: 0.02em;
 }
 
 .button:hover {
     scale: 1.025;
     gap: calc(var(--spacing-1) + 0.25em);
+    letter-spacing: 0.05em;
 }
 
 .button .fas {
@@ -134,7 +138,7 @@
     position: relative;
     background: var(--color-yellow);
     color: var(--color-navy);
-    border-radius: var(--rounding-3);
+    border-radius: var(--rounding-4);
     padding: var(--spacing-2) var(--spacing-4);
 }
 
@@ -142,7 +146,7 @@
     box-shadow: 20pt 20pt 0 0 var(--color-yellow);
     mix-blend-mode: multiply;
     content: "";
-    border-radius: var(--rounding-3);
+    border-radius: var(--rounding-4);
     position: absolute;
     top: 0;
     right: 0;
@@ -208,7 +212,8 @@
     text-align: center;
     padding: var(--spacing-4);
     color: var(--color-pink);
-    text-shadow: 1px 1px 4px var(--color-navy);
+    text-shadow: 2px 2px 0px var(--color-navy),
+        2px 2px 4px var(--color-navy);
 }
 
 .header-content h1 {

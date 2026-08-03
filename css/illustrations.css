@@ -10,7 +10,7 @@
    flex-direction: row;
    justify-content: space-between;
    gap: var(--spacing-4);
-   border-radius: var(--rounding-3);
+   border-radius: var(--rounding-4);
    padding: var(--spacing-2);
    margin: 0;
 }

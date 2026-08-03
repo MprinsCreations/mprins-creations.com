@@ -29,6 +29,7 @@
 
 * {
     box-sizing: border-box;
+    corner-shape: squircle;
 }
 
 html {
@@ -107,4 +108,8 @@ p {
     font-weight: 600;
     line-height: 1.5;
     margin: 0;
+}
+
+img {
+    border-radius: var(--rounding-4);
 }

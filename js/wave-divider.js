@@ -6,8 +6,9 @@ const waveConfig = {
     flipped: false, // flip the wave upside down
     color: 'var(--color-navy)', // CSS color or variable
     waves: [ // Multiple stacked wave layers
-        { amplitude: 35, frequency: 0.02, speed: 0.0019, phase: 0 },
-        { amplitude: 16, frequency: 0.12, speed: 0.0044, phase: 0 }
+        { amplitude: 35, frequency: 0.025, speed: 0.0015, phase: 0 },
+        { amplitude: 16, frequency: 0.11, speed: 0.0033, phase: 0 },
+        { amplitude: 3, frequency: 0.27, speed: 0.0271, phase: 0 }
     ]
 };
 
