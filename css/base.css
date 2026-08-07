@@ -30,6 +30,8 @@
 * {
     box-sizing: border-box;
     corner-shape: squircle;
+    margin: 0;
+    padding: 0;
 }
 
 html {

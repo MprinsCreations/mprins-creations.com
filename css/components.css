@@ -31,7 +31,7 @@
 
 .link:hover a,
 .icon-link:hover a {
-    animation: hoverTurn 0.2s ease forwards;
+    animation: hoverTurn 200ms ease forwards;
 }
 
 @keyframes hoverTurn {
@@ -81,7 +81,6 @@
 
 .button .fas {
     font-size: 1em;
-    scale: 1.1;
 }
 
 
@@ -134,7 +133,7 @@
 }
 
 /* ── Cards ── */
-.card {
+.card, [popover] {
     position: relative;
     background: var(--color-yellow);
     color: var(--color-navy);
@@ -142,7 +141,7 @@
     padding: var(--spacing-2) var(--spacing-4);
 }
 
-.card::before {
+.card::before/*, [popover]::before*/ {
     box-shadow: 20pt 20pt 0 0 var(--color-yellow);
     mix-blend-mode: multiply;
     content: "";
@@ -157,6 +156,36 @@
 
 .card>*:first-child {
     margin-top: 0;
+}
+
+/* ── Popovers ── */
+[popover]:popover-open {
+    overlay: auto !important;
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+[popover] {
+    display: block;
+    position: fixed;
+    position-anchor: auto;
+    z-index: 9999;
+    width: min(960px, 90%);
+    height: min(640px, 90%);
+    color: var(--color-navy);
+    background-color: var(--color-yellow);
+    border-radius: var(--rounding-4);
+    overlay: none !important;
+    inset: 0px;
+    margin: auto;
+    border: none;
+    padding: 0.25em;
+    overflow: visible;
+    pointer-events: none;
+    transition: opacity 200ms ease-out, transform 400ms cubic-bezier(0.25, 1.5, 0.25, 1);
+    opacity: 0;
+    transform: scale(0.9);
 }
 
 /* ── Carousel Arrows ── */

@@ -47,44 +47,68 @@
 
         <section id="illustrations">
             <article class="illustration">
-                <div class="illustration-image">
+                <figure class="illustration-image">
                     <img src="https://placehold.co/400x400" alt="Illustration 1">
-                </div>
+                </figure>
                 <div class="illustration-info">
                     <h4>Title</h4>
                     <p>Description of the illustration.</p>
 
-                    <a href="#" class="button bottom">View Process <i class="fas fa-chevron-right"></i></a>
+                    <button popovertarget="project1" class="button bottom">View Process <i class="fas fa-chevron-right"></i></button>
                 </div>
             </article>
+            <div id="project1" popover>
+                <h3>Project 1</h3>
+                <p>Hello!</p>
+
+                <button popovertarget="project1" popovertargetaction="hide">
+                    Close
+                </button>
+            </div>
 
             <div class="icon-divider"></div>
 
             <article class="illustration">
-                <div class="illustration-image">
+                <figure class="illustration-image">
                     <img src="https://placehold.co/400x400" alt="Illustration 2">
-                </div>
+                </figure>
                 <div class="illustration-info">
                     <h4>Title</h4>
                     <p>Description of the illustration.</p>
 
-                    <a href="#" class="button bottom">View Process <i class="fas fa-chevron-right"></i></a>
+                    <button popovertarget="project2" class="button bottom">View Process <i class="fas fa-chevron-right"></i></button>
                 </div>
             </article>
+                        <div id="project2" popover>
+                <h3>Project 2</h3>
+                <p>Hi!</p>
+
+                <button popovertarget="project2" popovertargetaction="hide">
+                    Close
+                </button>
+            </div>
 
             <div class="icon-divider" data-flipped="true"></div>
 
             <article class="illustration">
-                <div class="illustration-image">
+                <figure class="illustration-image">
                     <img src="https://placehold.co/400x400" alt="Illustration 3">
-                </div>
+                </figure>
                 <div class="illustration-info">
                     <h4>Title</h4>
                     <p>Description of the illustration.</p>
 
-                    <a href="#" class="button bottom">View Process<i class="fas fa-chevron-right"></i></a>
+                    <button popovertarget="project3" class="button bottom">View Process <i class="fas fa-chevron-right"></i></button>
                 </div>
             </article>
+            <div id="project3" popover>
+                <h3>Project 3</h3>
+                <p>Heya!</p>
+
+                <button popovertarget="project3" popovertargetaction="hide">
+                    Close
+                </button>
+            </div>
         </section>
     </main>
 
