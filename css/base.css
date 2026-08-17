@@ -1,30 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-    --color-pink: #ff9fc2;
-    --color-yellow: #ffeaad;
-    --color-navy: #1e3764;
+    --color-cyan: #bcfdf6;
+    --color-yellow: #fdfcb0;
+    --color-gray: #222627;
 
     --color-text-light: #ffffff;
-    --color-text-dark: var(--color-navy);
+    --color-text-dark: var(--color-gray);
 
-    --font-text: 'Nunito', 'Roboto', Helvetica, Arial, sans-serif;
     --font-heading: 'Titan One', 'Nunito', Helvetica, Arial, sans-serif;
-
-    --max-width: 1100px;
-
-    --spacing-1: 0.5rem;
-    --spacing-2: 1rem;
-    --spacing-3: 1.5rem;
-    --spacing-4: 2rem;
-    --spacing-5: 3rem;
-
-    --rounding-1: 8px;
-    --rounding-2: 16px;
-    --rounding-3: 24px;
-    --rounding-4: 32px;
+    --font-text: 'Nunito', Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -36,7 +22,7 @@
 
 html {
     height: 100%;
-    background-color: var(--color-navy);
+    background-color: var(--color-gray);
 }
 
 body {
@@ -61,7 +47,7 @@ section {
 article {
     width: 100%;
     max-width: var(--max-width);
-    margin-bottom: var(--spacing-4);
+    margin-bottom: 2rem;
 }
 
 h1 {
@@ -113,5 +99,5 @@ p {
 }
 
 img {
-    border-radius: var(--rounding-4);
+    border-radius: 2rem;
 }

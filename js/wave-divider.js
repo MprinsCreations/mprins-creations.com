@@ -1,58 +1,50 @@
 const waveConfig = {
     segments: 200, // number of segments to divide the wave into
-    waveHeight: 300, // fixed pixel height of the wave
-    positionOffset: -100, // raise/lower the wave baseline
-    tilt: -100, // positive = lift right, negative = lift left
+    tilt: 0, // positive = lift right, negative = lift left
     flipped: false, // flip the wave upside down
-    color: 'var(--color-navy)', // CSS color or variable
+    color: 'var(--color-yellow)', // CSS color or variable
     waves: [ // Multiple stacked wave layers
-        { amplitude: 35, frequency: 0.025, speed: 0.0015, phase: 0 },
-        { amplitude: 16, frequency: 0.11, speed: 0.0033, phase: 0 },
-        { amplitude: 3, frequency: 0.27, speed: 0.0271, phase: 0 }
+        { amplitude: 31, frequency: 0.0041, speed: 0.0001, phase: 0 },
+        { amplitude: 12, frequency: 0.0212, speed: 0.0013, phase: 0 },
+        { amplitude: 5, frequency: 0.0457, speed: 0.0076, phase: 0 },
+        { amplitude: 2, frequency: 0.0937, speed: 0.0037, phase: 0 }
     ]
 };
 
 // Inject styles
-const style = document.createElement('style');
-style.textContent = `
-    .wave-divider {
-        position: absolute;
-        bottom: -1px;
-        left: 0;
-        width: 100%;
-        max-height: 100%;
-        display: block;
-        pointer-events: none;
-        z-index: -1;
-        overflow: hidden;
-    }
-    
-    .wave-divider.wave-divider--flipped {
-        bottom: auto;
-        top: -1px;
-    }
-    
-    .wave-divider svg {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-`;
-document.head.appendChild(style);
+if (!document.getElementById('wave-divider-styles')) {
+    const style = document.createElement('style');
+    style.id = 'wave-divider-styles';
+    style.textContent = `
+        .wave-divider {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: block;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .wave-divider svg {
+            display: block;
+        }
+    `;
+    document.head.appendChild(style);
+}
 
 // Get configuration for a specific divider element
 function getDividerConfig(element) {
-    const config = { ...waveConfig };
+    const config = {
+        ...waveConfig,
+        waves: waveConfig.waves.map(wave => ({ ...wave }))
+    };
     
     // Override with data attributes
     if (element.hasAttribute('data-segments')) {
-        config.segments = parseInt(element.getAttribute('data-segments'));
-    }
-    if (element.hasAttribute('data-wave-height')) {
-        config.waveHeight = parseFloat(element.getAttribute('data-wave-height'));
-    }
-    if (element.hasAttribute('data-position-offset')) {
-        config.positionOffset = parseFloat(element.getAttribute('data-position-offset'));
+        config.segments = parseInt(element.getAttribute('data-segments'), 10);
     }
     if (element.hasAttribute('data-tilt')) {
         config.tilt = parseFloat(element.getAttribute('data-tilt'));
@@ -64,6 +56,9 @@ function getDividerConfig(element) {
         config.color = element.getAttribute('data-color');
     }
     
+    config.segments = Number.isFinite(config.segments) ? Math.max(2, Math.min(2000, config.segments)) : waveConfig.segments;
+    config.tilt = Number.isFinite(config.tilt) ? config.tilt : waveConfig.tilt;
+
     return config;
 }
 
@@ -78,11 +73,7 @@ function initWaveDividers() {
         }
         
         const dividerConfig = getDividerConfig(container);
-        const waveHeight = dividerConfig.waveHeight;
-        
-        // Set fixed height, capped at container size
-        container.style.height = waveHeight + 'px';
-        
+
         // Add flipped class if needed
         if (dividerConfig.flipped) {
             container.classList.add('wave-divider--flipped');
@@ -91,18 +82,16 @@ function initWaveDividers() {
         }
         
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.setAttribute('viewBox', `0 0 1200 ${waveHeight}`);
-        svg.setAttribute('preserveAspectRatio', 'none');
         
         // Create path for the wave
         const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         path.setAttribute('class', 'wave-path');
         path.setAttribute('fill', dividerConfig.color);
-        path.setAttribute('data-wave-height', waveHeight);
         path.setAttribute('data-config', JSON.stringify(dividerConfig));
         
         svg.appendChild(path);
         container.appendChild(svg);
+
     });
 }
 
@@ -110,14 +99,30 @@ function generateWavePath() {
     const wavePaths = document.querySelectorAll('.wave-path');
     
     wavePaths.forEach(wavePath => {
-        const waveHeight = parseFloat(wavePath.getAttribute('data-wave-height')) || 300;
-        const dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
+        const svg = wavePath.ownerSVGElement;
+        const container = svg?.parentElement;
+        if (!svg || !container) return;
+
+        // The parent affects only the SVG viewport. The path below is drawn
+        // in the same CSS-pixel coordinate system, so it is never scaled.
+        const viewportWidth = Math.max(1, container.clientWidth);
+        const viewportHeight = Math.max(1, container.clientHeight);
+        svg.setAttribute('width', viewportWidth);
+        svg.setAttribute('height', viewportHeight);
+        svg.setAttribute('viewBox', `0 0 ${viewportWidth} ${viewportHeight}`);
+
+        let dividerConfig;
+        try {
+            dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
+        } catch {
+            return;
+        }
+
         const segments = dividerConfig.segments;
         const tilt = dividerConfig.tilt;
-        let positionOffset = dividerConfig.positionOffset;
         const isFlipped = dividerConfig.flipped;
         
-        const midlineY = waveHeight / 2 - positionOffset;
+        const midlineY = 0;
         
         // Define the baseline heights at left and right edges
         let leftBaselineY = midlineY + Math.min(tilt, 0);
@@ -125,13 +130,13 @@ function generateWavePath() {
         
         // Flip the baseline if needed
         if (isFlipped) {
-            [leftBaselineY, rightBaselineY] = [waveHeight - rightBaselineY, waveHeight - leftBaselineY];
+            [leftBaselineY, rightBaselineY] = [-rightBaselineY, -leftBaselineY];
         }
         
         let pathPoints = [];
 
         for (let i = 0; i <= segments; i++) {
-            const x = (i / segments) * 1200;
+            const x = (i / segments) * viewportWidth;
             const t = i / segments;
             
             // Linearly interpolate baseline from left to right
@@ -139,7 +144,8 @@ function generateWavePath() {
 
             // Stack multiple waves together
             for (let waveLayer of dividerConfig.waves) {
-                let waveOffset = Math.sin((i * waveLayer.frequency) + waveLayer.phase) * waveLayer.amplitude;
+                // Frequency is radians per CSS pixel, not per divider width.
+                let waveOffset = Math.sin(x * waveLayer.frequency + waveLayer.phase) * waveLayer.amplitude;
                 // Invert wave offset if flipped
                 if (isFlipped) {
                     waveOffset = -waveOffset;
@@ -150,6 +156,20 @@ function generateWavePath() {
             pathPoints.push({ x, y });
         }
 
+        // Anchor to the wave's lowest possible extreme.
+        const waveRange = dividerConfig.waves.reduce(
+            (total, waveLayer) => total + Math.abs(waveLayer.amplitude),
+            0
+        );
+        const highestBaseline = Math.max(leftBaselineY, rightBaselineY);
+        const lowestBaseline = Math.min(leftBaselineY, rightBaselineY);
+        const translation = isFlipped
+            ? -(lowestBaseline - waveRange)
+            : viewportHeight - (highestBaseline + waveRange);
+        for (const point of pathPoints) {
+            point.y = Math.min(viewportHeight, Math.max(0, point.y + translation));
+        }
+
         // Build path string
         let path = `M${pathPoints[0].x},${pathPoints[0].y}`;
         for (let i = 1; i < pathPoints.length; i++) {
@@ -158,11 +178,9 @@ function generateWavePath() {
 
         // Close the shape
         if (isFlipped) {
-            // For flipped, close from top
-            path += ` L1200,0 L0,0 Z`;
+            path += ` L${viewportWidth},0 L0,0 Z`;
         } else {
-            // For normal, close from bottom
-            path += ` L1200,${waveHeight} L0,${waveHeight} Z`;
+            path += ` L${viewportWidth},${viewportHeight} L0,${viewportHeight} Z`;
         }
         
         wavePath.setAttribute('d', path);
@@ -174,10 +192,18 @@ function animateWaves() {
     const wavePaths = document.querySelectorAll('.wave-path');
     
     wavePaths.forEach(wavePath => {
-        const dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
+        let dividerConfig;
+        try {
+            dividerConfig = JSON.parse(wavePath.getAttribute('data-config'));
+        } catch {
+            return;
+        }
+
+        if (!Array.isArray(dividerConfig.waves)) return;
         
         // Update phase for each wave layer
         for (let waveLayer of dividerConfig.waves) {
+            if (!Number.isFinite(waveLayer.phase) || !Number.isFinite(waveLayer.speed)) continue;
             waveLayer.phase -= waveLayer.speed;
         }
         
@@ -196,16 +222,10 @@ if (document.readyState === 'loading') {
         generateWavePath();
         animateWaves();
         
-        window.addEventListener('resize', () => {
-            initWaveDividers();
-        });
     });
 } else {
     initWaveDividers();
     generateWavePath();
     animateWaves();
     
-    window.addEventListener('resize', () => {
-        initWaveDividers();
-    });
 }

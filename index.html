@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="css/index.css">
 
     <script src="js/components.js"></script>
-    <script src="js/navbar-scroll.js"></script>
+    <script src="js/navbar-scroll.js" defer></script>
+    <script src="js/hover-tilt.js" defer></script>
     <script src="js/wave-divider.js" defer></script>
+    <script src="js/icon-divider.js" defer></script>
     <script src="https://kit.fontawesome.com/c19e667509.js" crossorigin="anonymous"></script>
 
     <title>Mprins Creations</title>
     <meta name="description" content="I make art, comics and animations">
     <meta name="keywords" content="Art, comics, animations, drawings, mprins, mprins creations">
-    <link rel="icon" href="media/cat-light.png" type="image/x-icon">
+    <link rel="icon" href="media/logo.png" type="image/x-icon">
 
     <meta property="og:title" content="Mprins Creations">
     <meta property="og:description" content="I make art, comics and animations">
@@ -37,103 +39,19 @@
     <main>
         <!-- Hero Banner -->
         <section id="hero">
-            <!-- Will get replaced with an actual video
+            <!-- Will get replaced with an actual video or slideshow in the future
             <video class="hero-video" autoplay muted loop playsinline>
                 <source src="actual-video.mp4" type="video/mp4">
             </video>
             -->
             <img src="https://placehold.co/1920x1080" alt="Hero Image" class="hero-video">
-            <div class="hero-content">
-                <h1>Hey, I'm Milou!</h1>
-                <p>And welcome to my website</p>
-            </div>
+            <figure class="hero-logo hover-tilt">
+                <img src="media/logo.png" alt="Mprins Creations Logo">
+            </figure>
             <div class="wave-divider"></div>
         </section>
 
-        <!-- About Section (Navy) -->
-        <section id="about">
-            <article class="about-row">
-                <div class="card intro-card">
-                    <p>Insert yapping and self glaze here</p>
-                    <p>Insert yapping and self glaze here</p>
-                    <p>Insert yapping and self glaze here</p>
-                    <p>Insert yapping and self glaze here</p>
-                    <p>Insert yapping and self glaze here</p>
-                </div>
-                <div class="profile-picture">
-                    <img src="https://placehold.co/320x320" alt="Profile picture">
-                </div>
-            </article>
-        </section>
 
-        <section id="software">
-            <article>
-                <h4>Software</h4>
-                <div class="software-row">
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-            </article>
-        </section>
-
-        <section id="skills">
-            <article class="skills-row">
-                <div class="card">
-                    <h4>Languages</h4>
-                    <p>I can speak</p>
-                    <p>Yay</p>
-                </div>
-                <div class="card">
-                    <h4>Education</h4>
-                    <p>Ik heb fucking graficxsh lycuem rotterdan gedaan joepie :)</p>
-                </div>
-            </article>
-        </section>
-
-        <!-- Portfolio Carousel (Pink) -->
-        <div class="background-pink">
-            <div class="wave-divider" data-flipped="true"></div>
-            <section id="portfolio">
-                <h2>My Work</h2>
-                <article class="portfolio-carousel">
-                    <button class="carousel-arrow" aria-label="Previous">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div class="portfolio-card card">
-                        <div class="portfolio-text">
-                            <h3>Project</h3>
-                            <p>Look at this thing i did</p>
-                        </div>
-                        <div class="portfolio-image">
-                            <img src="https://placehold.co/400x300/151c45/ffeaad?text=Art+Piece" alt="Example artwork">
-                        </div>
-                    </div>
-                    <button class="carousel-arrow" aria-label="Next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </article>
-            </section>
-        </div>
     </main>
 
     <footer id="footer-container"></footer>
