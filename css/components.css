@@ -53,7 +53,7 @@
     gap: 0.5rem;
     text-decoration: none;
     padding: 0.5em 1em;
-    background-color: var(--color-yellow);
+    background-color: var(--color-cyan);
     color: var(--color-gray);
     border: none;
     border-radius: 1rem;
@@ -109,25 +109,24 @@
 }
 
 /* ── Cards ── */
-.card, [popover] {
+.card {
     position: relative;
-    background: var(--color-yellow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 4rem;
+    background: var(--color-cyan);
     color: var(--color-gray);
-    border-radius: 2rem;
-    padding: 1rem 2rem;
+    border-radius: 2.5rem;
+    box-shadow: 0.25rem 0.25rem 2rem rgba(100, 0, 0, 0.1), 0.5rem 0.5rem 4rem rgba(100, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(100, 0, 0, 0.1);
 }
 
-.card::before/*, [popover]::before*/ {
-    box-shadow: 20pt 20pt 0 0 var(--color-yellow);
-    mix-blend-mode: multiply;
-    content: "";
-    border-radius: 2rem;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    pointer-events: none;
+.card>* {
+    z-index: 10;
 }
 
 .card>*:first-child {

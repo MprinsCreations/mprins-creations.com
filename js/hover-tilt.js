@@ -1,17 +1,24 @@
-const maxTilt = 10;
-const tileScale = 1.01;
+const maxTilt = 5;
+const tileScale = 1.005;
+const perspective = "800px";
 
 const wrappers = document.querySelectorAll(".hover-tilt");
 
 wrappers.forEach((wrapper) => {
   const tile = wrapper.children[0];
 
+  const elementMaxTilt = parseFloat(tile.dataset.maxTilt) || maxTilt;
+  const elementTileScale = parseFloat(tile.dataset.tileScale) || tileScale;
+  const elementPerspective = parseFloat(tile.dataset.perspective) || perspective;
+
+  wrapper.style.perspective = elementPerspective;
+  wrapper.style.perspectiveOrigin = "center";
+  wrapper.style.width = "100%";
+  wrapper.style.height = "100%";
+
   if (!tile) {
     return;
   }
-
-  wrapper.style.perspective = "800px";
-  wrapper.style.perspectiveOrigin = "center";
 
   wrapper.addEventListener("mouseenter", () => {
     tile.style.transition =
@@ -23,11 +30,11 @@ wrappers.forEach((wrapper) => {
     const offsetX = (event.clientX - rect.left) / rect.width - 0.5;
     const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
     const sizeFactor = Math.min(1, 320 / Math.max(rect.width, rect.height));
-    const tilt = maxTilt * sizeFactor * 2;
+    const tilt = elementMaxTilt * sizeFactor * 2;
     const rotateX = -offsetY * tilt;
     const rotateY = offsetX * tilt;
 
-    tile.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${tileScale})`;
+    tile.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${elementTileScale})`;
   });
 
   wrapper.addEventListener("mouseleave", () => {

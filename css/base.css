@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-    --color-cyan: #bcfdf6;
+    --color-cyan: #a5fff6;
     --color-yellow: #fdfcb0;
     --color-gray: #222627;
 
@@ -15,31 +15,34 @@
 
 * {
     box-sizing: border-box;
-    corner-shape: squircle;
     margin: 0;
     padding: 0;
 }
 
-html {
-    height: 100%;
-    background-color: var(--color-gray);
-}
-
-body {
+html, body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     width: 100%;
     margin: 0;
+    background-color: var(--color-yellow);
     font-family: var(--font-text);
-    color: var(--color-text-light);
+    color: var(--color-text-dark);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    flex: 1;
+    width: 100%;
 }
 
 section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: calc(100% - 2rem);
     margin: 0 auto;
     flex: 1;
 }
@@ -47,12 +50,11 @@ section {
 article {
     width: 100%;
     max-width: var(--max-width);
-    margin-bottom: 2rem;
 }
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 6.4rem;
+    font-size: 6em;
     font-weight: 500;
     line-height: 0.9;
     margin: 1.2rem 0 0.2rem 0;
@@ -62,37 +64,36 @@ h1 {
 
 h2 {
     font-family: var(--font-heading);
-    font-size: 4.6rem;
+    font-size: 4em;
     font-weight: 200;
     margin: 0;
-    text-transform: uppercase;
 }
 
 h3 {
-    font-size: 3rem;
+    font-size: 3.2em;
     font-weight: 700;
     margin: 0;
 }
 
 h4 {
-    font-size: 2.4rem;
+    font-size: 2.4em;
     margin: 0;
 }
 
 h5 {
-    font-size: 1.8rem;
+    font-size: 1.8em;
     margin: 0;
 }
 
 h6 {
-    font-size: 1.7rem;
+    font-size: 1.7em;
     font-style: italic;
     font-weight: 300;
     margin: 0;
 }
 
 p {
-    font-size: 1.7rem;
+    font-size: 1.7em;
     font-weight: 600;
     line-height: 1.5;
     margin: 0;

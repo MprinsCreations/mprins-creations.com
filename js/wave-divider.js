@@ -4,10 +4,11 @@ const waveConfig = {
     flipped: false, // flip the wave upside down
     color: 'var(--color-yellow)', // CSS color or variable
     waves: [ // Multiple stacked wave layers
-        { amplitude: 31, frequency: 0.0041, speed: 0.0001, phase: 0 },
-        { amplitude: 12, frequency: 0.0212, speed: 0.0013, phase: 0 },
-        { amplitude: 5, frequency: 0.0457, speed: 0.0076, phase: 0 },
-        { amplitude: 2, frequency: 0.0937, speed: 0.0037, phase: 0 }
+        { amplitude: 37, frequency: 0.0031, speed: 0.0017, phase: 0 },
+        { amplitude: 17, frequency: 0.0182, speed: 0.0087, phase: 0 },
+        { amplitude: 11, frequency: 0.0257, speed: 0.0153, phase: 0 },
+        { amplitude: 3, frequency: 0.837, speed: 0.0039, phase: 0 },
+        { amplitude: 2, frequency: 0.321, speed: 0.0457, phase: 0 }
     ]
 };
 
