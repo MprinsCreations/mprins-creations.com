@@ -8,7 +8,7 @@ const waveConfig = {
         { amplitude: 17, frequency: 0.0182, speed: 0.0087, phase: 0 },
         { amplitude: 11, frequency: 0.0257, speed: 0.0153, phase: 0 },
         { amplitude: 3, frequency: 0.837, speed: 0.0039, phase: 0 },
-        { amplitude: 2, frequency: 0.321, speed: 0.0457, phase: 0 }
+        { amplitude: 2, frequency: 0.221, speed: 0.0257, phase: 0 }
     ]
 };
 
