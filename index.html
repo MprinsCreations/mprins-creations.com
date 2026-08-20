@@ -19,7 +19,7 @@
     <title>Mprins Creations</title>
     <meta name="description" content="I make art, comics and animations">
     <meta name="keywords" content="Art, comics, animations, drawings, mprins, mprins creations">
-    <link rel="icon" href="media/logo.png" type="image/x-icon">
+    <link rel="icon" href="media/favicon.ico" type="image/x-icon">
 
     <meta property="og:title" content="Mprins Creations">
     <meta property="og:description" content="I make art, comics and animations">
@@ -39,12 +39,9 @@
     <main>
         <!-- Hero Banner -->
         <section id="hero">
-            <!-- Will get replaced with an actual video or slideshow in the future
             <video class="hero-video" autoplay muted loop playsinline>
-                <source src="actual-video.mp4" type="video/mp4">
+                <source src="media/home/not-actual-video.mp4" type="video/mp4">
             </video>
-            -->
-            <img src="https://placehold.co/1920x1080" alt="Hero Image" class="hero-video">
             <figure class="hero-logo">
                 <div class="hover-tilt" data-max-tilt="15" data-tile-scale="1.025">
                     <img src="media/logo.png" alt="Mprins Creations Logo">
@@ -56,11 +53,19 @@
         <!-- Introduction -->
         <section id="introduction">
             <div class="hover-tilt">
-                <article class="card">
-                    <h2>HI, I'M MILOU! COMIC<br>ARTIST & ILLUSTRATOR.</h2>
-                    <p>Writer and artist of the webcomic series<br>Fate Doesn't Listen</p>
-                </article>
+                <div class="introduction-wrapper">
+                    <figure class="introduction-image">
+                        <img src="media/home/introduction.png" alt="A stylized drawing of Milou Prins with drawn swirls around her">
+                    </figure>
+                    <article class="card">
+                        <div class="introduction-text">
+                            <h1>HI, I'M MILOU! COMIC ARTIST & ILLUSTRATOR.</h1>
+                            <h2>Writer and artist of the webcomic series Fate Doesn't Listen</h2>
+                        </div>
+                    </article>
+                </div>
             </div>
+
         </section>
 
         <div class="icon-divider"></div>
@@ -68,16 +73,16 @@
         <!-- Portfolio -->
         <section id="portfolio">
             <div>
-                <h2>MY PORTFOLIO</h2>
-                <h4>take a look at my work!</h4>
+                <h1>MY PORTFOLIO</h1>
+                <h2>take a look at my work!</h2>
             </div>
             <div class="hover-tilt">
                 <article class="card">
                     <div>
-                        <h2>Comics</h2>
-                        <p>Original stories and fun projects.</p>
+                        <h1>Comics</h1>
+                        <h3>Original stories and fun projects.</>
                     </div>
-                    <a href="comics.html" class="button">View</a>
+                    <div href="comics.html" class="button-wrap"><a class="button">View</a></div>
                 </article>
             </div>
         </section>
@@ -88,9 +93,14 @@
         <section id="about">
             <div class="hover-tilt">
                 <article class="card">
-                    <h2>This is me!</h2>
-                    <p>Nice to meet you! I am Milou Prins, 20 years old and graduated from Grafisch Lyceum Rotterdam.</p>
-                    <p>All my life I have loved drawing, and I am a huge animation and comic book enthousiast. I love creating, and I am always open to learn and do new things. I love to experiment and push my art style to the limit!</p>
+                    <div class="about-text">
+                        <h1>This is me!</h1>
+                        <h3>Nice to meet you! I am Milou Prins, 20 years old and graduated from Grafisch Lyceum Rotterdam.</h3>
+                        <p>All my life I have loved drawing, and I am a huge animation and comic book enthousiast. I love creating, and I am always open to learn and do new things. I love to experiment and push my art style to the limit!</p>
+                    </div>
+                    <figure class="about-image">
+                        <img src="media/home/about.png" alt="A stylized drawing of Milou Prins with her cat">
+                    </figure>
                 </article>
             </div>
         </section>

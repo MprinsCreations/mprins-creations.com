@@ -1,24 +1,32 @@
 const maxTilt = 5;
 const tileScale = 1.005;
-const perspective = "800px";
+const perspective = 800;
 
 const wrappers = document.querySelectorAll(".hover-tilt");
 
 wrappers.forEach((wrapper) => {
   const tile = wrapper.children[0];
 
+  if (!tile) return;
+
   const elementMaxTilt = parseFloat(tile.dataset.maxTilt) || maxTilt;
+
   const elementTileScale = parseFloat(tile.dataset.tileScale) || tileScale;
+
   const elementPerspective = parseFloat(tile.dataset.perspective) || perspective;
 
-  wrapper.style.perspective = elementPerspective;
+  wrapper.style.perspective = `${elementPerspective}px`;
   wrapper.style.perspectiveOrigin = "center";
   wrapper.style.width = "100%";
   wrapper.style.height = "100%";
 
+  tile.style.transformStyle = "preserve-3d";
+
   if (!tile) {
     return;
   }
+
+  tile.style.transformStyle = "preserve-3d";
 
   wrapper.addEventListener("mouseenter", () => {
     tile.style.transition =

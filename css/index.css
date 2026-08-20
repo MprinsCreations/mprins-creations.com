@@ -55,13 +55,11 @@
 }
 
 /* ═══ Sections ═══ */
-section .card {
-   font-size: clamp(0.5rem, 1.5rem, calc(0.4rem + 1vw));
-}
-
 #introduction .card {
-   height: 48rem;
+   display: flex;
+   align-items: end;
    text-align: right;
+   height: 48rem;
 }
 
 #introduction .card::after {
@@ -91,7 +89,7 @@ section .card {
          transparent 6rem);
 
    background-size: 100% 100%;
-   animation: ripple-move 24s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+   animation: ripple-move 48s cubic-bezier(0.1, 0, 0.9, 1) infinite;
    will-change: background-size;
    transform: translateZ(0);
 }
@@ -110,6 +108,28 @@ section .card {
    }
 }
 
+#introduction .introduction-wrapper {
+   position: relative;
+}
+
+#introduction .introduction-image {
+   position: absolute;
+   bottom: -4%;
+   left: -4%;
+   height: 100%;
+   z-index: 10;
+}
+
+#introduction .introduction-image img {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+}
+
+#introduction .introduction-text {
+   max-width: 60em;
+}
+
 #portfolio {
    gap: 2rem;
    text-align: center;
@@ -122,8 +142,13 @@ section .card {
 }
 
 #about .card {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
    height: 48rem;
    text-align: left;
+   transform-style: preserve-3d;
 }
 
 #about .card::before {
@@ -135,7 +160,21 @@ section .card {
    background-size: 360px 60px;
    transform: rotate(205deg);
    transform-origin: center;
-   animation: hatch-scroll 5s linear infinite;
+   animation: hatch-scroll 8s linear infinite;
+}
+
+#about .about-text {
+   max-width: 42em;
+}
+
+#about .about-image {
+   height: 100%;
+}
+
+#about .about-image img {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
 }
 
 @keyframes hatch-scroll {

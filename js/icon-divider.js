@@ -26,7 +26,7 @@
                 justify-content: center;
                 font-size: var(--icon-divider-size, 24px);
                 color: var(--color-accent);
-                font-size: 2em;
+                font-size: 2rem;
                 line-height: 1;
                 flex: 0 0 auto;
             }

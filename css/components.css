@@ -2,92 +2,140 @@
     margin-top: auto !important;
 }
 
-.link a {
-    display: flex;
-    align-items: center;
-    color: var(--color-gray);
-    text-decoration: none;
-    padding: 0.25em 0.5em;
-    gap: 0.5em;
-    border-radius: 1rem;
-}
-
-.icon-link a {
-    display: flex;
-    align-items: center;
-    color: var(--color-gray);
-    text-decoration: none;
-    padding: 0.25em;
-    border-radius: 1rem;
-    aspect-ratio: 1 / 1;
-}
-
-.link:hover a,
-.icon-link:hover a {
-    animation: hoverTurn 200ms ease forwards;
-}
-
-@keyframes hoverTurn {
-    0% {
-        background-color: var(--color-gray);
-        color: var(--color-yellow);
-        transform: rotate(0deg);
-    }
-
-    50% {
-        transform: rotate(-5deg);
-    }
-
-    100% {
-        background-color: var(--color-gray);
-        color: var(--color-yellow);
-        transform: rotate(-3deg);
-    }
-}
-
 .button {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0rem 2rem;
-    min-width: 300px;
-    min-height: 4.5rem;
-    font-size: 1.5em;
+    gap: 0.5em;
+    padding: 0.25em 2em;
+    min-width: 8em;
+    min-height: 2em;
+    font-family: var(--font-heading-2);
+    font-size: 2em;
+    letter-spacing: 1px;
+    font-weight: 500;
     text-decoration: none;
     background-color: var(--color-accent);
     color: var(--color-yellow);
     border: none;
     border-radius: 9999px;
-    font-weight: 700;
     cursor: pointer;
     transition:
-        scale 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2),
+        transform 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2),
         gap 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2),
-        letter-spacing 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2);
-    letter-spacing: 0.02em;
+        background-size 0.4s cubic-bezier(0.1, 1.25, 0.15, 1.2);
 }
 
-.button:hover {
-    scale: 1.025;
-    gap: calc(0.5rem + 0.25em);
-    letter-spacing: 0.05em;
+.button:hover,
+.button-wrap:hover .button {
+    animation: button-bounce 0.6s cubic-bezier(0.1, 1.25, 0.15, 1.2);
 }
-
-.button .fas {
-    font-size: 1em;
-}
-
 
 .button:active {
-    scale: 0.975;
+    transform: scale(1.1, 0.9);
 }
 
 .button:disabled {
     opacity: 0.6;
     filter: grayscale(0.6);
     cursor: not-allowed;
-    scale: 1;
+    transform: scale(1, 1);
+}
+
+@keyframes button-bounce {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    30% {
+        transform: scale(1.1, 0.9);
+    }
+
+    50% {
+        transform: scale(0.975, 1.025);
+    }
+
+    75% {
+        transform: scale(1.025, 0.975);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+.button::before,
+.button::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.button-wrap:hover .button::before {
+    animation: button-particles-a 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.button-wrap:hover .button::after {
+    animation: button-particles-b 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards 0.05s;
+}
+
+@keyframes button-particles-a {
+    0% {
+        box-shadow:
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink);
+    }
+
+    100% {
+        box-shadow:
+            71px 3px 0 3.8px transparent,
+            102px 33px 0 5.0px transparent,
+            46px 58px 0 4.3px transparent,
+            41px 70px 0 4.5px transparent,
+            11px 79px 0 4.9px transparent,
+            -32px 74px 0 4.8px transparent,
+            -54px 45px 0 5.4px transparent,
+            -82px 28px 0 3.5px transparent;
+    }
+}
+
+@keyframes button-particles-b {
+    0% {
+        box-shadow:
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink),
+            0 0 0 0 var(--color-pink);
+    }
+
+    100% {
+        box-shadow:
+            -86px -12px 0 3.3px transparent,
+            -108px -30px 0 4.8px transparent,
+            -68px -82px 0 4.6px transparent,
+            -22px -86px 0 4.7px transparent,
+            10px -100px 0 5.6px transparent,
+            43px -96px 0 3.1px transparent,
+            55px -64px 0 3.2px transparent,
+            67px -34px 0 3.8px transparent;
+    }
 }
 
 .button-group {

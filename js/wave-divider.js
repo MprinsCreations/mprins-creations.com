@@ -1,5 +1,5 @@
 const waveConfig = {
-    segments: 200, // number of segments to divide the wave into
+    segments: 500, // number of segments to divide the wave into
     tilt: 0, // positive = lift right, negative = lift left
     flipped: false, // flip the wave upside down
     color: 'var(--color-yellow)', // CSS color or variable
@@ -7,8 +7,8 @@ const waveConfig = {
         { amplitude: 37, frequency: 0.0031, speed: 0.0017, phase: 0 },
         { amplitude: 17, frequency: 0.0182, speed: 0.0087, phase: 0 },
         { amplitude: 11, frequency: 0.0257, speed: 0.0153, phase: 0 },
-        { amplitude: 3, frequency: 0.837, speed: 0.0039, phase: 0 },
-        { amplitude: 2, frequency: 0.221, speed: 0.0257, phase: 0 }
+        { amplitude: 1, frequency: 0.337, speed: 0.0039, phase: 0 },
+        { amplitude: 2, frequency: 0.121, speed: 0.0257, phase: 0 }
     ]
 };
 
