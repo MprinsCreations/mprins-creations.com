@@ -54,6 +54,14 @@ main section {
     margin: 0 auto;
     flex: 1;
     z-index: 10;
+
+    @media (max-width: 768px) {
+        width: calc(100% - 2rem);
+    }
+
+    @media (max-width: 480px) {
+        width: calc(100% - 1rem);
+    }
 }
 
 main article {

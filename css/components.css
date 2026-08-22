@@ -8,12 +8,12 @@
 
 @keyframes animate-in {
     from {
-        transform: translateY(8rem);
+        transform: translateY(4rem) scale(0.9);
         opacity: 0;
     }
 
     to {
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
         opacity: 1;
     }
 }
@@ -195,6 +195,14 @@
     box-shadow: 0.25rem 0.25rem 2rem rgba(100, 0, 0, 0.1), 0.5rem 0.5rem 4rem rgba(100, 0, 0, 0.05);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     border-bottom: 1px solid rgba(100, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+        padding: 2rem;
+    }
+
+    @media (max-width: 480px) {
+        padding: 1rem;
+    }
 }
 
 .card>* {
