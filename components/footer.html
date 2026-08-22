@@ -1,11 +1,12 @@
 <div class="footer-contact">
-   <h2>Get in Touch!</h4>
-      <div>
-      <a class="footer-link" href="mailto:mprinscreations@gmail.com"><i class="fas fa-envelope"></i> mprinscreations@gmail.com</a>
-      <a class="footer-link" href="https://discord.com/users/492758615510482948" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> @mprins-creations</a>
-      </div>
+   <div>
+      <h2>Get in Touch!</h4>
+         <a class="footer-link" href="mailto:mprinscreations@gmail.com"><i class="fas fa-envelope"></i> mprinscreations@gmail.com</a>
+         <a class="footer-link" href="https://discord.com/users/492758615510482948" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> @mprins-creations</a>
+   </div>
+   <p class="footer-copyright">&copy; 2026 Mprins Creations. All rights reserved.</p>
 </div>
-<div fclass="footer-social">
+<div class="footer-social">
    <a class="footer-link" href="https://www.instagram.com/mprins_creations" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-instagram"></i> Instagram
    </a>
@@ -25,6 +26,11 @@
       <i class="fab fa-tiktok"></i> TikTok
    </a>
 </div>
+<div class="footer-to-top">
+   <figure id="to-top" class="hover-tilt">
+      <img src="https://placehold.co/100x100" alt="Mprins Creations Logo">
+   </figure>
+</div>
 
 <style>
    footer {
@@ -33,6 +39,7 @@
       justify-content: center;
       flex-direction: row;
       width: 100%;
+      height: 18rem;
       background-color: var(--color-gray);
       color: var(--color-text-light);
       padding: 2rem 4rem;
@@ -71,12 +78,7 @@
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
-
-   }
-
-   .footer-contact {
-      display: flex;
-      justify-content: space-between;
+      height: 100%;
    }
 
    .footer-link {
@@ -103,5 +105,51 @@
    .footer-link:hover i {
       transform: rotate(360deg);
       scale: 1.5;
+   }
+
+   .footer-social {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+
+   .footer-copyright {
+      font-size: 1rem;
+      opacity: 0.5;
+      margin-top: auto;
+   }
+
+   .footer-contact {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+
+   .footer-to-top {
+      flex: 0.5;
+
+      @media (max-width: 768px) {
+         display: none;
+      }
+   }
+
+   footer figure {
+      display: flex;
+      justify-content: flex-end;
+      height: 100%;
+      cursor: pointer;
+      transform-origin: top right;
+      transition: transform 400ms cubic-bezier(0.1, 1.25, 0.15, 1.2);
+   }
+
+   footer figure:hover {
+      transform: scale(1.02) rotate(-2deg);
+   }
+
+   footer figure img {
+      border-radius: 0;
+      height: 100%;
+      width: unset;
+      object-fit: contain;
    }
 </style>

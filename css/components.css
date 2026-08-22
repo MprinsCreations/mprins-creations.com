@@ -1,3 +1,24 @@
+/* ===== Animate in ===== */
+
+.animate-in {
+    animation: animate-in cubic-bezier(0.25, 1, 0.75, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 50%;
+}
+
+@keyframes animate-in {
+    from {
+        transform: translateY(8rem);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
 .bottom {
     margin-top: auto !important;
 }
