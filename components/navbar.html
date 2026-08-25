@@ -2,14 +2,14 @@
    <a href="index.html" class="logo">
       <img src="media/logo-nav.png" alt="Mprins Creations Logo">
    </a>
-   <nav>
+   <nav class="nav-links">
       <a href="illustrations.html" class="link">Illustrations</a>
       <a href="animations.html" class="link">Animations</a>
       <a href="comics.html" class="link">Comics</a>
       <a href="design.html" class="link">Design</a>
    </nav>
 </div>
-<nav>
+<nav class="social-links">
    <a href="https://www.instagram.com/mprins_creations" class="icon-link" target="_blank" rel="noopener noreferrer">
       <i class="fab fa-instagram"></i>
    </a>
@@ -36,6 +36,12 @@
       box-shadow: 0.25rem 0.25rem 2rem rgba(100, 0, 0, 0.2), 0.5rem 0.5rem 4rem rgba(100, 0, 0, 0.1);
       z-index: 100;
       transition: transform 0.2s ease-in-out;
+
+      @media (max-width: 480px) {
+         height: auto;
+         padding: 1rem;
+         align-items: center;
+      }
    }
 
    header.hidden {
@@ -70,6 +76,43 @@
       gap: 1rem;
    }
 
+   @media (max-width: 768px) {
+      header .logo {
+         display: none;
+      }
+   }
+
+   @media (max-width: 640px) {
+      header {
+         flex-direction: column;
+         align-items: center;
+         gap: 0.5rem;
+      }
+
+      header>div,
+      header .nav-links {
+         width: 100%;
+      }
+
+      header .nav-links .link {
+         flex: 1;
+      }
+
+      header .social-links {
+         display: none;
+      }
+   }
+
+   @media (max-width: 480px) {
+      header .nav-links {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 0.5rem;
+      }
+   }
+
+
+   /* ===== Links ===== */
    nav .link {
       padding: 0.5rem 1rem;
       gap: 1rem;

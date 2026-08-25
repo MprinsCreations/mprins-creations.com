@@ -18,6 +18,7 @@ const waveConfig = {
         }
     },
 
+    // amplitude: px of vertical movement (bigger = taller ripples)
     // wavelength: px per full ripple (bigger = broader, gentler ripple)
     // period: seconds per full cycle (bigger = slower motion)
     waves: [
@@ -29,34 +30,36 @@ const waveConfig = {
         },
         {
             amplitude: -13.4,
-            wavelength: 345,
+            wavelength: 347,
             period: 12,
             phase: -38.27714918337676
         },
         {
             amplitude: -1.1,
-            wavelength: 245,
+            wavelength: 241,
             period: 6.8,
             phase: -67.54791032359734
         },
         {
-            amplitude: 0,
-            wavelength: 19,
-            period: 27,
+            amplitude: 1.5,
+            wavelength: 93,
+            period: -2,
             phase: -17.012066303722314
-        },
-        {
-            amplitude: 0,
-            wavelength: 52,
-            period: 4.1,
-            phase: -112.0306805367092
         }
     ]
 };
 
+const REFERENCE_WIDTH = 1440;
+const MIN_SCALE = 0.55;
+const MAX_SCALE = 1.2;
+
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 const TWO_PI = Math.PI * 2;
 const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function getScale(width) {
+    return clamp(width / REFERENCE_WIDTH, MIN_SCALE, MAX_SCALE);
+}
 
 const ATTR_HANDLERS = {
     'data-segments': (c, v) => c.segments = parseInt(v, 10),
@@ -176,10 +179,10 @@ function getAnimatedValues(config, scrollProgress) {
     };
 }
 
-function getWavePoints(config, values, width, height) {
-    const unit = height / 100;
-    const tilt = values.tilt * unit;
-    const curve = values.curve * unit;
+function getWavePoints(config, values, width, height, scale) {
+    const slopeUnit = (height / 100) * scale;
+    const tilt = values.tilt * slopeUnit;
+    const curve = values.curve * slopeUnit;
 
     const leftY = Math.min(tilt, 0);
     const rightY = -Math.max(tilt, 0);
@@ -193,9 +196,12 @@ function getWavePoints(config, values, width, height) {
         y += curve * Math.sin(Math.PI * t);
 
         for (const wave of config.waves) {
+            const effAmplitude = wave.amplitude * scale;
+            const effAngularFrequency = wave.angularFrequency / scale;
+
             y += Math.sin(
-                x * wave.angularFrequency + wave.phase
-            ) * wave.amplitude;
+                x * effAngularFrequency + wave.phase
+            ) * effAmplitude;
         }
 
         points.push({ x, y });
@@ -204,19 +210,20 @@ function getWavePoints(config, values, width, height) {
     return points;
 }
 
-function getWaveTranslation(config, values, width, height) {
-    const unit = height / 100;
+function getWaveTranslation(config, values, width, height, scale) {
+    const slopeUnit = (height / 100) * scale;
+    const verticalUnit = height / 100; // offset is a pure vertical shift, unaffected by width scale
     const anchor = config.scroll?.reanchor ? values : config;
 
-    const anchorTilt = anchor.tilt * unit;
-    const anchorCurve = anchor.curve * unit;
-    const anchorOffset = anchor.offset * unit;
+    const anchorTilt = anchor.tilt * slopeUnit;
+    const anchorCurve = anchor.curve * slopeUnit;
+    const anchorOffset = anchor.offset * verticalUnit;
 
     const anchorLeftY = Math.min(anchorTilt, 0);
     const anchorRightY = -Math.max(anchorTilt, 0);
     const highestBaseline = Math.max(anchorLeftY, anchorRightY);
     const waveRange = config.waves.reduce(
-        (total, wave) => total + Math.abs(wave.amplitude),
+        (total, wave) => total + Math.abs(wave.amplitude * scale),
         0
     );
     const curveDown = Math.max(0, anchorCurve);
@@ -261,6 +268,7 @@ function generateWavePath() {
         const { config, path, svg } = state;
         const width = Math.max(1, container.clientWidth);
         const height = Math.max(1, container.clientHeight);
+        const scale = getScale(width);
 
         svg.setAttribute('width', width);
         svg.setAttribute('height', height);
@@ -276,12 +284,13 @@ function generateWavePath() {
         );
 
         const animated = getAnimatedValues(config, scrollProgress);
-        const points = getWavePoints(config, animated, width, height);
+        const points = getWavePoints(config, animated, width, height, scale);
         const translation = getWaveTranslation(
             config,
             animated,
             width,
-            height
+            height,
+            scale
         );
 
         for (const point of points) {

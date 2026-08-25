@@ -9,11 +9,11 @@ wrappers.forEach((wrapper) => {
 
   if (!tile) return;
 
-  const elementMaxTilt = parseFloat(tile.dataset.maxTilt) || maxTilt;
+  const elementMaxTilt = parseFloat(wrapper.dataset.maxTilt) || maxTilt;
 
-  const elementTileScale = parseFloat(tile.dataset.tileScale) || tileScale;
+  const elementTileScale = parseFloat(wrapper.dataset.tileScale) || tileScale;
 
-  const elementPerspective = parseFloat(tile.dataset.perspective) || perspective;
+  const elementPerspective = parseFloat(wrapper.dataset.perspective) || perspective;
 
   wrapper.style.perspective = `${elementPerspective}px`;
   wrapper.style.perspectiveOrigin = "center";
