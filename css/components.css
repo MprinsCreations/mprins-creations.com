@@ -212,3 +212,55 @@
 .card>*:first-child {
     margin-top: 0;
 }
+
+
+/* ===== Carsousel ===== */
+.carousel {
+    display: flex;
+    flex-direction: row;
+    justify-content: unset !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 16px;
+}
+
+.carousel>* {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+}
+
+.carousel::scroll-button(left),
+.carousel::scroll-button(right) {
+    background: var(--color-accent);
+    color: var(--color-yellow);
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    margin: 8px;
+
+    transition: scale 0.2s cubic-bezier(0.1, 3, 0.15, 1.2);
+}
+
+.carousel::scroll-button(left):hover,
+.carousel::scroll-button(right):hover {
+    scale: 1.1;
+} 
+
+.carousel::scroll-button(left):active,
+.carousel::scroll-button(right):active {
+    scale: 0.95;
+} 
+.carousel::scroll-button(left):hover,
+.carousel::scroll-button(right):hover {
+    scale: 1.1;
+} 
+
+.carousel::scroll-button(left) {
+    content: "←" / "Previous slide";
+}
+
+.carousel::scroll-button(right) {
+    content: "→" / "Next slide";
+}

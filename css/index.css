@@ -162,6 +162,11 @@
 
 #portfolio .card {
    height: 36rem;
+}
+
+#portfolio .card.carousel>div {
+   display: flex;
+   flex-direction: column;
    justify-content: space-around;
    align-items: center;
 }
@@ -173,7 +178,6 @@
    align-items: center;
    height: 48rem;
    text-align: left;
-   transform-style: preserve-3d;
 
    @media (max-width: 768px) {
       flex-direction: column;
