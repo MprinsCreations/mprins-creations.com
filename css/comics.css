@@ -1,0 +1,33 @@
+.card {
+    flex-direction: row;
+    gap: 4rem;
+    text-align: justify;
+    min-height: 48rem;
+}
+
+.card>figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0.5;
+}
+
+.card>figure img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 2rem;
+}
+
+.card>div {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    flex: 1;
+}
+
+.card>div>* {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

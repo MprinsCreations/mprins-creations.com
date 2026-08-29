@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/comics.css">
+
+    <script src="js/components.js"></script>
+    <script src="js/navbar-scroll.js" defer></script>
+    <script src="js/hover-tilt.js" defer></script>
+    <script src="js/wave-divider.js" defer></script>
+    <script src="js/icon-divider.js" defer></script>
+    <script src="js/to-top.js" defer></script>
+
+    <script src="https://kit.fontawesome.com/c19e667509.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/lenis@1.3.8/dist/lenis.min.js"></script>
+    <script>
+        const lenis = new Lenis({
+            allowNestedScroll: true,
+        });
+
+        function raf(time)
+        {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
+
+    <title>Comics | Mprins Creations</title>
+    <meta name="description" content="I make art, comics and animations">
+    <meta name="keywords" content="Art, comics, animations, drawings, mprins, mprins creations">
+    <link rel="icon" href="media/favicon.ico" type="image/x-icon">
+
+    <meta property="og:title" content="Mprins Creations">
+    <meta property="og:description" content="I make art, comics and animations">
+    <meta property="og:image" content="https://mprins-creations.com/media/social-preview.png">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mprins Creations">
+    <meta name="twitter:description" content="I make art, comics and animations">
+    <meta name="twitter:image" content="https://mprins-creations.com/media/social-preview.png">
+    <meta name="twitter:creator" content="@mprinscreations">
+</head>
+
+<body>
+    <header id="navbar-container"></header>
+
+    <main>
+        <!-- Banner -->
+        <section id="banner">
+            <h1>COMICS</h1>
+            <h3>Original stories and fun projects</h3>
+            <div class="wave-divider"></div>
+        </section>
+
+
+        <!-- Fate doesn't listen -->
+        <section>
+            <div class="hover-tilt animate-in">
+                <article class="card hatch-scroll">
+                    <figure>
+                        <img src="media/comics/fate-doesn't-listen.png" alt="A stylized drawing of Milou Prins with her cat">
+                    </figure>
+                    <div>
+                        <h3>Fate Doesn't Listen</h3>
+                        <div>
+                            <h4>Chosen by an ancient force of light, Nathaniel Brooks, a reluctant teenage boy, must set out to a hidden magical world to face the light's corrupted twin before it regains its physical form.</h4>
+                            <p>Fate Doesn't Listen is a comic that, after two years as an idea, has taken shape as a webcomic series. I started drawing it in September 2025. The first episode went online on February 6th 2026, and new episodes are posted regularly every Friday at 5.00 pm. </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <div class="icon-divider animate-in"></div>
+
+        <!-- Fate doesn't listen -->
+        <section>
+            <div class="hover-tilt animate-in">
+                <article class="card hatch-scroll">
+                    <div>
+                        <h3>Fate Doesn't Listen</h3>
+                        <div>
+                            <h4>Chosen by an ancient force of light, Nathaniel Brooks, a reluctant teenage boy, must set out to a hidden magical world to face the light's corrupted twin before it regains its physical form.</h4>
+                            <p>Fate Doesn't Listen is a comic that, after two years as an idea, has taken shape as a webcomic series. I started drawing it in September 2025. The first episode went online on February 6th 2026, and new episodes are posted regularly every Friday at 5.00 pm. </p>
+                        </div>
+                    </div>
+                    <figure>
+                        <img src="media/comics/fate-doesn't-listen.png" alt="A stylized drawing of Milou Prins with her cat">
+                    </figure>
+                </article>
+            </div>
+        </section>
+
+        <div class="icon-divider animate-in" data-flipped="true"></div>
+
+        <!-- Fate doesn't listen -->
+        <section>
+            <div class="hover-tilt animate-in">
+                <article class="card hatch-scroll">
+                    <figure>
+                        <img src="media/comics/fate-doesn't-listen.png" alt="A stylized drawing of Milou Prins with her cat">
+                    </figure>
+                    <div>
+                        <h3>Fate Doesn't Listen</h3>
+                        <div>
+                            <h4>Chosen by an ancient force of light, Nathaniel Brooks, a reluctant teenage boy, must set out to a hidden magical world to face the light's corrupted twin before it regains its physical form.</h4>
+                            <p>Fate Doesn't Listen is a comic that, after two years as an idea, has taken shape as a webcomic series. I started drawing it in September 2025. The first episode went online on February 6th 2026, and new episodes are posted regularly every Friday at 5.00 pm. </p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer-container"></footer>
+</body>
+
+</html>

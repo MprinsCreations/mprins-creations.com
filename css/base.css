@@ -71,7 +71,7 @@ main article {
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 4.5em;
+    font-size: 8em;
     font-weight: 500;
     line-height: 0.9;
     margin: 0.5rem 0 0.5rem 0;
@@ -80,6 +80,16 @@ h1 {
 }
 
 h2 {
+    font-family: var(--font-heading);
+    font-size: 4.5em;
+    font-weight: 500;
+    line-height: 0.9;
+    margin: 0.5rem 0 0.5rem 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+h3 {
     font-family: var(--font-heading-2);
     font-size: 3em;
     font-weight: 200;
@@ -87,27 +97,20 @@ h2 {
     margin: 0;
 }
 
-h3 {
+h4 {
     font-family: var(--font-text-big);
     font-size: 2.75em;
     font-weight: 600;
     margin: 0;
 }
 
-h4 {
+h5 {
     font-size: 2.25em;
     margin: 0;
 }
 
-h5 {
-    font-size: 2em;
-    margin: 0;
-}
-
 h6 {
-    font-size: 1.6em;
-    font-style: italic;
-    font-weight: 300;
+    font-size: 2em;
     margin: 0;
 }
 
