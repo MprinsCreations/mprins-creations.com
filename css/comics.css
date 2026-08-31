@@ -5,6 +5,14 @@
     min-height: 48rem;
 }
 
+@media (max-width: 640px) {
+    .card {
+        flex-direction: column;
+        gap: 2rem;
+        min-height: auto;
+    }
+}
+
 .card>figure {
     display: flex;
     justify-content: center;
@@ -22,6 +30,7 @@
 .card>div {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 2rem;
     flex: 1;
 }

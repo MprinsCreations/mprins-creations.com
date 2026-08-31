@@ -75,7 +75,7 @@
       gap: 1rem;
    }
 
-   @media (max-width: 768px) {
+   @media (max-width: 640px) {
       header .logo {
          display: none;
       }
@@ -102,14 +102,6 @@
       }
    }
 
-   @media (max-width: 480px) {
-      header .nav-links {
-         display: grid;
-         grid-template-columns: 1fr 1fr;
-         gap: 0.5rem;
-      }
-   }
-
 
    /* ===== Links ===== */
    nav .link {
@@ -119,6 +111,7 @@
       border: 2px solid var(--color-accent);
       font-size: 1em;
       font-weight: 700;
+      text-align: center;
       text-decoration: none;
       border-radius: 9999px;
       transition: transform 0.4s cubic-bezier(0.05, 4, 0.25, 1);
