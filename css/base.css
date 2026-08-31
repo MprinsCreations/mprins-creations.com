@@ -31,7 +31,7 @@ body {
     min-height: 100vh;
     width: 100%;
     margin: 0;
-    font-size: clamp(0.8rem, 1.2rem, calc(0.25rem + 0.75vw));
+    font-size: clamp(0.75rem, 1.25rem, calc(0.25rem + 0.75vw));
     background-color: var(--color-yellow);
     font-family: var(--font-text);
     color: var(--color-text-dark);
