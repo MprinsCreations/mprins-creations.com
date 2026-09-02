@@ -13,6 +13,8 @@
     --font-text-big: 'Josefin Slab', 'Nunito', Helvetica, Arial, sans-serif;
     --font-text: 'Nunito', Helvetica, Arial, sans-serif;
     --max-width: 1920px;
+    --banner-height: 50vh;
+    --home-banner-height: 100vh;
 }
 
 * {
@@ -30,8 +32,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    min-height: 100lvh;
+    min-height: 100svh;
     color: var(--color-text-dark);
     font-family: var(--font-text);
 }

@@ -1,6 +1,5 @@
 #banner {
-    min-height: 100vh;
-    min-height: 100lvh;
+    min-height: var(--home-banner-height);
 }
 
 #introduction .card {
@@ -127,19 +126,26 @@
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
+        height: auto;
+        min-height: 48rem;
+        padding-bottom: 30rem;
         text-align: center;
     }
 
     .introduction-image {
         bottom: 0;
         left: 50%;
+        width: min(24rem, 80vw);
         height: auto;
-        min-width: 24rem;
-        max-height: 60%;
-        transform: translate(-50%, 10%);
+        min-width: 0;
+        max-height: none;
+        aspect-ratio: 5 / 6;
+        transform: translate(-50%, 8%);
     }
 
     .introduction-text {
+        width: 100%;
+        min-width: 0;
         max-width: none;
     }
 
@@ -155,6 +161,10 @@
 }
 
 @media (max-width: 480px) {
+    #introduction h2 {
+        font-size: min(4.5em, 11vw);
+    }
+
     #about .card {
         height: auto;
     }
