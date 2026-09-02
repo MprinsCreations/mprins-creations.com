@@ -1,53 +1,38 @@
-const maxTilt = 5;
-const tileScale = 1.005;
-const perspective = 800;
+const reduceTiltMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-const wrappers = document.querySelectorAll(".hover-tilt");
+document.querySelectorAll('.hover-tilt').forEach(wrapper => {
+    if (reduceTiltMotion.matches) return;
 
-wrappers.forEach((wrapper) => {
-  const tile = wrapper.children[0];
+    const tile = wrapper.firstElementChild;
+    if (!tile) return;
 
-  if (!tile) return;
+    const maxTilt = Number(wrapper.dataset.maxTilt) || 5;
+    const scale = Number(wrapper.dataset.tileScale) || 1.005;
+    const perspective = Number(wrapper.dataset.perspective) || 800;
 
-  const elementMaxTilt = parseFloat(wrapper.dataset.maxTilt) || maxTilt;
+    Object.assign(wrapper.style, {
+        width: '100%',
+        height: '100%',
+        perspective: `${perspective}px`,
+        perspectiveOrigin: 'center'
+    });
+    tile.style.transformStyle = 'preserve-3d';
 
-  const elementTileScale = parseFloat(wrapper.dataset.tileScale) || tileScale;
+    wrapper.addEventListener('pointerenter', () => {
+        tile.style.transition = 'transform 300ms cubic-bezier(0.2, 1.25, 0.3, 1)';
+    });
 
-  const elementPerspective = parseFloat(wrapper.dataset.perspective) || perspective;
+    wrapper.addEventListener('pointermove', event => {
+        const rect = wrapper.getBoundingClientRect();
+        const strength = maxTilt * Math.min(1, 320 / Math.max(rect.width, rect.height)) * 2;
+        const rotateX = -(event.clientY - rect.top) / rect.height * strength + strength / 2;
+        const rotateY = (event.clientX - rect.left) / rect.width * strength - strength / 2;
 
-  wrapper.style.perspective = `${elementPerspective}px`;
-  wrapper.style.perspectiveOrigin = "center";
-  wrapper.style.width = "100%";
-  wrapper.style.height = "100%";
+        tile.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${scale})`;
+    });
 
-  tile.style.transformStyle = "preserve-3d";
-
-  if (!tile) {
-    return;
-  }
-
-  tile.style.transformStyle = "preserve-3d";
-
-  wrapper.addEventListener("mouseenter", () => {
-    tile.style.transition =
-      "transform 300ms cubic-bezier(0.2, 1.25, 0.3, 1)";
-  });
-
-  wrapper.addEventListener("mousemove", (event) => {
-    const rect = wrapper.getBoundingClientRect();
-    const offsetX = (event.clientX - rect.left) / rect.width - 0.5;
-    const offsetY = (event.clientY - rect.top) / rect.height - 0.5;
-    const sizeFactor = Math.min(1, 320 / Math.max(rect.width, rect.height));
-    const tilt = elementMaxTilt * sizeFactor * 2;
-    const rotateX = -offsetY * tilt;
-    const rotateY = offsetX * tilt;
-
-    tile.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(${elementTileScale})`;
-  });
-
-  wrapper.addEventListener("mouseleave", () => {
-    tile.style.transition =
-      "transform 500ms cubic-bezier(0.4, 2.4, 0.4, 1)";
-    tile.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-  });
+    wrapper.addEventListener('pointerleave', () => {
+        tile.style.transition = 'transform 500ms cubic-bezier(0.4, 2.4, 0.4, 1)';
+        tile.style.transform = 'none';
+    });
 });

@@ -3,18 +3,15 @@
 :root {
     --color-cyan: #a5fff6;
     --color-yellow: #fdfcb0;
-    --color-pink: #FFAFDF;
+    --color-pink: #ffafdf;
     --color-gray: #222627;
     --color-accent: #483b4d;
-
-    --color-text-light: #ffffff;
+    --color-text-light: #fff;
     --color-text-dark: var(--color-gray);
-
     --font-heading: 'Titan One', 'Nunito', Helvetica, Arial, sans-serif;
     --font-heading-2: 'Agbalumo', 'Nunito', Helvetica, Arial, sans-serif;
     --font-text-big: 'Josefin Slab', 'Nunito', Helvetica, Arial, sans-serif;
     --font-text: 'Nunito', Helvetica, Arial, sans-serif;
-
     --max-width: 1920px;
 }
 
@@ -24,44 +21,37 @@
     padding: 0;
 }
 
-html,
+html {
+    min-height: 100%;
+    font-size: clamp(0.75rem, 1.25rem, calc(0.25rem + 0.75vw));
+    background: var(--color-yellow);
+}
+
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    width: 100%;
-    margin: 0;
-    font-size: clamp(0.75rem, 1.25rem, calc(0.25rem + 0.75vw));
-    background-color: var(--color-yellow);
-    font-family: var(--font-text);
     color: var(--color-text-dark);
+    font-family: var(--font-text);
 }
 
 main {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 5rem;
-    flex: 1;
     width: 100%;
 }
 
 main section {
+    z-index: 10;
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     width: calc(100% - 4rem);
     max-width: var(--max-width);
     margin: 0 auto;
-    flex: 1;
-    z-index: 10;
-
-    @media (max-width: 768px) {
-        width: calc(100% - 2rem);
-    }
-
-    @media (max-width: 480px) {
-        width: calc(100% - 1rem);
-    }
 }
 
 main article {
@@ -69,24 +59,22 @@ main article {
     max-width: var(--max-width);
 }
 
-h1 {
+h1,
+h2 {
+    margin: 0.5rem 0;
     font-family: var(--font-heading);
-    font-size: 8em;
     font-weight: 500;
     line-height: 0.9;
-    margin: 0.5rem 0 0.5rem 0;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
 
+h1 {
+    font-size: 8em;
+}
+
 h2 {
-    font-family: var(--font-heading);
     font-size: 4.5em;
-    font-weight: 500;
-    line-height: 0.9;
-    margin: 0.5rem 0 0.5rem 0;
-    letter-spacing: 1px;
-    text-transform: uppercase;
 }
 
 h3 {
@@ -94,36 +82,46 @@ h3 {
     font-size: 3em;
     font-weight: 200;
     line-height: 1.2;
-    margin: 0;
 }
 
 h4 {
     font-family: var(--font-text-big);
     font-size: 2.75em;
     font-weight: 600;
-    margin: 0;
-}
-
-h5 {
-    font-size: 2.25em;
-    margin: 0;
-}
-
-h6 {
-    font-size: 2em;
-    margin: 0;
 }
 
 p {
     font-size: 1.5em;
     font-weight: 500;
     line-height: 1.5;
-    margin: 0;
 }
 
 img {
-    border-radius: 2rem;
     width: 100%;
     height: 100%;
+    border-radius: 2rem;
     object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    main section {
+        width: calc(100% - 2rem);
+    }
+}
+
+@media (max-width: 480px) {
+    main section {
+        width: calc(100% - 1rem);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
 }

@@ -1,184 +1,21 @@
-<div>
-   <a href="index.html" class="logo">
-      <img src="media/logo-nav.png" alt="Mprins Creations Logo">
-   </a>
-   <nav class="nav-links">
-      <a href="illustrations.html" class="link">Illustrations</a>
-      <a href="comics.html" class="link">Comics</a>
-      <a href="design.html" class="link">Design</a>
-   </nav>
+<div class="navbar-main">
+    <a href="index.html" class="logo">
+        <img src="media/logo-nav.png" alt="Mprins Creations Logo">
+    </a>
+    <nav class="nav-links">
+        <a href="illustrations.html" class="link">Illustrations</a>
+        <a href="comics.html" class="link">Comics</a>
+        <a href="design.html" class="link">Design</a>
+    </nav>
 </div>
-<nav class="social-links">
-   <a href="https://www.instagram.com/mprins_creations" class="icon-link" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-instagram"></i>
-   </a>
-   <a href="https://bsky.app/profile/mprinscreations.bsky.social" class="icon-link" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-bluesky"></i>
-   </a>
-   <a href="https://www.pinterest.com/mprinscreations/" class="icon-link" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-pinterest"></i>
-   </a>
+<nav class="social-links" aria-label="Social media">
+    <a href="https://www.instagram.com/mprins_creations" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+    </a>
+    <a href="https://bsky.app/profile/mprinscreations.bsky.social" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+        <i class="fab fa-bluesky" aria-hidden="true"></i>
+    </a>
+    <a href="https://www.pinterest.com/mprinscreations/" class="icon-link" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+        <i class="fab fa-pinterest" aria-hidden="true"></i>
+    </a>
 </nav>
-
-<style>
-   header {
-      position: fixed;
-      top: 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 5rem;
-      width: 100%;
-      font-size: 1.25rem;
-      padding: 0 2rem;
-      background-color: var(--color-yellow);
-      box-shadow: 0.25rem 0.25rem 2rem rgba(100, 0, 0, 0.2), 0.5rem 0.5rem 4rem rgba(100, 0, 0, 0.1);
-      z-index: 100;
-      transition: transform 0.2s ease-in-out;
-
-      @media (max-width: 480px) {
-         height: auto;
-         padding: 1rem;
-         align-items: center;
-      }
-   }
-
-   header.hidden {
-      transform: translateY(-100%);
-   }
-
-   header div {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      height: 100%;
-   }
-
-   header .logo,
-   header .logo img {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-
-      transition: transform 0.4s cubic-bezier(0.05, 4, 0.25, 1);
-   }
-
-   header .logo:hover {
-      transform: rotate(-3deg);
-   }
-
-   nav {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      gap: 1rem;
-   }
-
-   @media (max-width: 640px) {
-      header .logo {
-         display: none;
-      }
-   }
-
-   @media (max-width: 640px) {
-      header {
-         flex-direction: column;
-         align-items: center;
-         gap: 0.5rem;
-      }
-
-      header>div,
-      header .nav-links {
-         width: 100%;
-      }
-
-      header .nav-links .link {
-         flex: 1;
-      }
-
-      header .social-links {
-         display: none;
-      }
-   }
-
-
-   /* ===== Links ===== */
-   nav .link {
-      padding: 0.5rem 1rem;
-      gap: 1rem;
-      color: var(--color-accent);
-      border: 2px solid var(--color-accent);
-      font-size: 1em;
-      font-weight: 700;
-      text-align: center;
-      text-decoration: none;
-      border-radius: 9999px;
-      transition: transform 0.4s cubic-bezier(0.05, 4, 0.25, 1);
-   }
-
-   nav .link::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 9999px;
-      background-color: var(--color-accent);
-      z-index: -1;
-      transition: scale 0.3s cubic-bezier(0.25, 1, 0.25, 1);
-      scale: 0;
-   }
-
-   nav .link:hover {
-      background-color: var(--color-accent);
-      color: var(--color-yellow);
-   }
-
-   nav .link:hover::before {
-      transition: scale 0.4s cubic-bezier(0.05, 1.75, 0.25, 1);
-      scale: 1;
-   }
-
-   nav .icon-link {
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 0.25em;
-      color: var(--color-accent);
-      font-size: 1.25em;
-      text-decoration: none;
-      aspect-ratio: 1 / 1;
-      border-radius: 9999px;
-      transition: transform 0.4s cubic-bezier(0.05, 6, 0.25, 1);
-   }
-
-   nav .icon-link::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 9999px;
-      background-color: var(--color-accent);
-      z-index: -1;
-      transition: scale 0.3s cubic-bezier(0.25, 1, 0.25, 1);
-      scale: 0;
-   }
-
-   nav .icon-link:hover {
-      color: var(--color-yellow);
-   }
-
-   nav .icon-link:hover::before {
-      transition: scale 0.4s cubic-bezier(0.05, 2, 0.25, 1);
-      scale: 1;
-   }
-
-   nav .link:hover,
-   nav .icon-link:hover {
-      transform: rotate(-3deg);
-   }
-</style>

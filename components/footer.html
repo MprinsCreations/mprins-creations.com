@@ -1,229 +1,42 @@
 <div class="footer-contact">
-   <div>
-      <h3>Get in Touch!</h3>
-         <a class="footer-link" href="mailto:mprinscreations@gmail.com"><i class="fas fa-envelope"></i> mprinscreations@gmail.com</a>
-         <a class="footer-link" href="https://discord.com/users/492758615510482948" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> @mprins-creations</a>
-   </div>
-   <div class="footer-info">
-      <p>Site created by <a href="https://links.noomstuff.com" target="_blank" rel="noopener noreferrer">NoomStuff</a>.</p>
-      <p>&copy; 2026 Mprins Creations. All rights reserved.</p>
-   </div>
+    <div>
+        <h3>Get in Touch!</h3>
+        <a class="footer-link" href="mailto:mprinscreations@gmail.com">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            mprinscreations@gmail.com
+        </a>
+        <a class="footer-link" href="https://discord.com/users/492758615510482948" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-discord" aria-hidden="true"></i>
+            @mprins-creations
+        </a>
+    </div>
+    <div class="footer-info">
+        <p>Site created by <a href="https://links.noomstuff.com" target="_blank" rel="noopener noreferrer">NoomStuff</a>.</p>
+        <p>&copy; 2026 Mprins Creations. All rights reserved.</p>
+    </div>
 </div>
 <div class="footer-social">
-   <a class="footer-link" href="https://www.instagram.com/mprins_creations" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-instagram"></i> Instagram
-   </a>
-   <a class="footer-link" href="https://bsky.app/profile/mprinscreations.bsky.social" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-bluesky"></i> Bluesky
-   </a>
-   <a class="footer-link" href="https://www.reddit.com/user/mprins_creations/" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-reddit"></i> Reddit
-   </a>
-   <a class="footer-link" href="https://www.pinterest.com/mprinscreations/" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-pinterest"></i> Pinterest
-   </a>
-   <a class="footer-link" href="https://www.youtube.com/@mprins_creations" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-youtube"></i> YouTube
-   </a>
-   <a class="footer-link" href="https://www.tiktok.com/@mprins_creations" target="_blank" rel="noopener noreferrer">
-      <i class="fab fa-tiktok"></i> TikTok
-   </a>
+    <a class="footer-link" href="https://www.instagram.com/mprins_creations" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+    </a>
+    <a class="footer-link" href="https://bsky.app/profile/mprinscreations.bsky.social" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-bluesky" aria-hidden="true"></i> Bluesky
+    </a>
+    <a class="footer-link" href="https://www.reddit.com/user/mprins_creations/" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-reddit" aria-hidden="true"></i> Reddit
+    </a>
+    <a class="footer-link" href="https://www.pinterest.com/mprinscreations/" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-pinterest" aria-hidden="true"></i> Pinterest
+    </a>
+    <a class="footer-link" href="https://www.youtube.com/@mprins_creations" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-youtube" aria-hidden="true"></i> YouTube
+    </a>
+    <a class="footer-link" href="https://www.tiktok.com/@mprins_creations" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-tiktok" aria-hidden="true"></i> TikTok
+    </a>
 </div>
 <div class="footer-to-top">
-   <figure id="to-top" class="hover-tilt">
-      <img src="/media/to-top.png" alt="Mprins Creations Logo">
-   </figure>
+    <button id="to-top" type="button" aria-label="Back to top">
+        <img src="/media/to-top.png" alt="">
+    </button>
 </div>
-
-<style>
-   footer {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      flex-direction: row;
-      width: 100%;
-      height: clamp(250px, 20em, 400px);
-      background-color: var(--color-gray);
-      color: var(--color-text-light);
-      padding: 2rem 4rem;
-      gap: 2rem;
-
-      @media (max-width: 640px) {
-         height: auto;
-         flex-direction: column;
-         padding: 2rem;
-      }
-   }
-
-   footer>div {
-      display: flex;
-      flex: 1;
-      height: 100%;
-   }
-
-   footer::before {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      width: 100%;
-      height: 24rem;
-      top: -24rem;
-      left: 0;
-      background-color: var(--color-gray);
-   }
-
-   footer::after {
-      content: "";
-      position: absolute;
-      z-index: 1;
-      width: 100%;
-      height: 4rem;
-      top: -24rem;
-      left: 0;
-      border-radius: 0 0 4rem 4rem;
-      background-color: var(--color-yellow);
-   }
-
-   footer div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      height: 100%;
-   }
-
-
-   /* ===== Footer Links ===== */
-   .footer-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: inherit;
-      opacity: 0.8;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.5rem;
-      transition:
-         gap 0.5s cubic-bezier(0.11, 1.29, 0.73, 1),
-         opacity 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
-         color 0.5s ease,
-         border-color 0.5s ease;
-   }
-
-   .footer-link:hover {
-      opacity: 1;
-      gap: 1.5rem;
-      color: var(--color-yellow);
-      border-color: var(--color-yellow);
-   }
-
-   .footer-link i {
-      transition: transform 0.5s cubic-bezier(0.11, 1.29, 0.73, 1), scale 0.5s cubic-bezier(0.11, 1.29, 0.73, 1);
-   }
-
-   .footer-link:hover i {
-      transform: rotate(360deg);
-      scale: 1.5;
-   }
-
-
-   /* ===== Footer Contact ===== */
-   .footer-contact {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-   }
-
-   /* Footer Info */
-   .footer-info {
-      justify-content: flex-end;
-   }
-
-   .footer-info p {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.5);
-   }
-
-   .footer-info a {
-      position: relative;
-      display: inline-block;
-      color: rgba(255, 255, 255, 0.75);
-      font-weight: 700;
-      text-decoration: none;
-      transition:
-         scale 500ms cubic-bezier(0.2, 2.4, 0.2, 1),
-         color 250ms ease;
-   }
-
-   .footer-info a:hover {
-      color: white;
-      scale: 1.05;
-   }
-
-   .footer-info a::before {
-      content: "";
-      position: absolute;
-      display: block;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 2px;
-      border-radius: 9999px;
-      corner-shape: round;
-      background: rgba(255, 255, 255, 0.25);
-   }
-
-   .footer-info a::after {
-      content: "";
-      position: absolute;
-      display: block;
-      left: 0;
-      bottom: 0;
-      width: 0;
-      height: 2px;
-      border-radius: 9999px;
-      corner-shape: round;
-      background: var(--color-yellow);
-      transition: width 250ms ease-out;
-   }
-
-   .footer-info a:hover::after {
-      width: 100%;
-   }
-
-   /* ===== Footer Social Links ===== */
-   .footer-social {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-   }
-
-
-   /* ===== Footer To Top ===== */
-   .footer-to-top {
-      flex: 0.5;
-
-      @media (max-width: 768px) {
-         display: none;
-      }
-   }
-
-   footer figure {
-      display: flex;
-      justify-content: flex-end;
-      height: 100%;
-      cursor: pointer;
-      transform-origin: top right;
-      transition: transform 400ms cubic-bezier(0.1, 1.25, 0.15, 1.2);
-   }
-
-   footer figure:hover {
-      transform: scale(1.02) rotate(-2deg);
-   }
-
-   footer figure img {
-      border-radius: 0;
-      height: 100%;
-      width: unset;
-      object-fit: contain;
-   }
-</style>

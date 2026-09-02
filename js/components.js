@@ -1,13 +1,9 @@
-async function loadComponent(selector, file)
-{
-    const response = await fetch(file);
-    const html = await response.text();
+const loadComponent = async (selector, path) => {
+    const response = await fetch(path);
+    document.querySelector(selector).innerHTML = await response.text();
+};
 
-    document.querySelector(selector).innerHTML = html;
-}
-
-document.addEventListener("DOMContentLoaded", () =>
-{
-    loadComponent("#navbar-container", "/components/navbar.html");
-    loadComponent("#footer-container", "/components/footer.html");
+document.addEventListener('DOMContentLoaded', () => {
+    loadComponent('#navbar-container', '/components/navbar.html');
+    loadComponent('#footer-container', '/components/footer.html');
 });
