@@ -30,7 +30,8 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100svh;
+    min-height: 100vh;
+    min-height: 100lvh;
     color: var(--color-text-dark);
     font-family: var(--font-text);
 }

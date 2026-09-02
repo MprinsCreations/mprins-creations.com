@@ -18,7 +18,8 @@
     justify-content: center;
     width: 100%;
     max-width: none;
-    min-height: 50svh;
+    min-height: 50vh;
+    min-height: 50lvh;
     overflow: hidden;
     background: linear-gradient(135deg, var(--color-cyan), var(--color-yellow), var(--color-pink));
 }

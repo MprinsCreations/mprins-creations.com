@@ -1,5 +1,6 @@
 #banner {
-    min-height: 100svh;
+    min-height: 100vh;
+    min-height: 100lvh;
 }
 
 #introduction .card {
@@ -52,6 +53,7 @@
 
 .introduction-image img,
 .about-image img {
+    z-index: 10;
     object-fit: contain;
 }
 
